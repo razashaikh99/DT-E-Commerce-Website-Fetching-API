@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -9,13 +8,12 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-20">
                         <div className="flex items-center">
-                            <span className="text-2xl font-bold text-indigo-600">TrendingShoes</span>
+                            <span className="text-2xl font-bold text-indigo-600">Apna Mart</span>
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
                             <Link to="/" className="text-gray-700 hover:text-indigo-600 transition-colors">Home</Link>
-                            <Link to="/mens-shoes" className="text-gray-700 hover:text-indigo-600 transition-colors">Men</Link>
-                            <Link to="/womens-shoes" className="text-gray-700 hover:text-indigo-600 transition-colors">Women</Link>
+                            <Link to="/all-products" className="text-gray-700 hover:text-indigo-600 transition-colors">All Products</Link>
                             <Link to="/about-us" className="text-gray-700 hover:text-indigo-600 transition-colors">About Us</Link>
                             <Link to="/contact-us" className="text-gray-700 hover:text-indigo-600 transition-colors">Contact Us</Link>
                         </div>
