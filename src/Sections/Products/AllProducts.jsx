@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { toast } from 'react-toastify';
 
 export default function AllProducts() {
 
     const [AllProductsData, setAllProductsData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { addToCart } = useContext(CartContext)
 
     useEffect(() => {
         fetch("https://dummyjson.com/products")
@@ -22,23 +26,10 @@ export default function AllProducts() {
         </div>
     }
 
-    const StarRating = ({ rating }) => {
-        const fullStars = Math.floor(rating);
-        const halfStar = rating - fullStars >= 0.5;
-        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-        return (
-            <div className="flex text-yellow-400">
-                {[...Array(fullStars)].map((_, i) => (
-                    <i key={`full-${i}`} className="fas fa-star"></i>
-                ))}
-                {halfStar && <i className="fas fa-star-half-alt"></i>}
-                {[...Array(emptyStars)].map((_, i) => (
-                    <i key={`empty-${i}`} className="far fa-star"></i>
-                ))}
-            </div>
-        );
-    };
+    const toastifyNotify = (product) => {
+        addToCart(product)
+        toast.success(`${product.title} added to cart!`)
+    }
 
     return (
         <div className="bg-gray-50 min-h-screen py-30 px-4 sm:px-6 lg:px-8">
@@ -74,10 +65,9 @@ export default function AllProducts() {
                                 {product.title}
                             </h3>
 
-                            <div className="flex items-center mt-2">
-                                <StarRating rating={product.rating} />
-                                <span className="text-sm text-gray-600 ml-2">
-                                    ({product.rating})
+                            <div className="flex items-center mt-2 text-sm font-bold">Category:
+                                <span className="text-gray-600 ml-1">
+                                    {product.category}
                                 </span>
                             </div>
 
@@ -88,6 +78,7 @@ export default function AllProducts() {
                             </div>
 
                             <button
+                                onClick={() => toastifyNotify(product)}
                                 className="w-full mt-4 contact-gradient text-white py-2 rounded-lg hover:bg-indigo-700 transition hover:scale-105 cursor-pointer"
                             >
                                 Add to Cart
