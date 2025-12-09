@@ -9,15 +9,11 @@ export default function CartSidebar({ isOpen, onClose }) {
 
     return (
         <div>
-
-            {/* Overlay */}
             <div
                 className={`fixed inset-0 bg-black/10 backdrop-blur-sm transition-opacity duration-300 z-40
                 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
                 onClick={onClose}
             ></div>
-
-            {/* Sidebar */}
             <div
                 className={`fixed top-0 right-0 h-full w-[350px] bg-white shadow-xl p-6 z-50
                 transition-transform duration-300
@@ -29,11 +25,10 @@ export default function CartSidebar({ isOpen, onClose }) {
                         <i className="fas fa-times text-gray-600 text-xl cursor-pointer"></i>
                     </button>
                 </div>
-
                 {cartItems.length === 0 ? (
                     <p>Your cart is empty.</p>
                 ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-4 h-full overflow-y-auto">
                         {cartItems.map((item) => (
                             <div key={item.id} className="flex items-center gap-4 border-b pb-3">
                                 <img
@@ -44,7 +39,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                                     <h3 className="font-semibold">{item.title}</h3>
                                     <p className="text-gray-500 text-sm">Qty: {item.qty}</p>
                                     <p className="text-indigo-600 font-bold">
-                                        ${item.price * item.qty}
+                                        ${item.price.toFixed(2) * item.qty}
                                     </p>
                                     <button
                                         onClick={() => removeFromCart(item.id)}
@@ -55,13 +50,11 @@ export default function CartSidebar({ isOpen, onClose }) {
                                 </div>
                             </div>
                         ))}
-                        <div className="mt-4 font-bold text-lg">
+                        <div className="mt-4 pb-12 font-bold text-xl">
                             Total: ${totalPrice.toFixed(2)}
                         </div>
                     </div>
                 )}
-
-
             </div>
         </div>
     );

@@ -37,7 +37,7 @@ export default function AllProducts() {
                 All Products
             </h1>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
 
                 {AllProductsData.map((product) => (
                     <div
@@ -53,7 +53,7 @@ export default function AllProducts() {
                             />
 
                             {product.brand && (
-                                <div className="absolute top-3 right-3 px-2 py-1 rounded text-sm font-semibold text-white bg-indigo-600">
+                                <div className="absolute top-2 right-2 px-3 rounded-full text-sm font-semibold text-white bg-orange-400/80">
                                     {product.brand}
                                 </div>
                             )}
@@ -61,7 +61,7 @@ export default function AllProducts() {
                         </div>
 
                         <div className="p-6">
-                            <h3 className="font-semibold text-gray-900 text-lg">
+                            <h3 className="font-semibold text-gray-900 text-lg h-20">
                                 {product.title}
                             </h3>
 
@@ -79,14 +79,13 @@ export default function AllProducts() {
 
                             <button
                                 onClick={() => toastifyNotify(product)}
-                                className="w-full mt-4 contact-gradient text-white py-2 rounded-lg hover:bg-indigo-700 transition hover:scale-105 cursor-pointer"
+                                className="w-full mt-4 contact-gradient text-white py-2 rounded-full hover:bg-indigo-700 transition hover:scale-105 cursor-pointer"
                             >
                                 Add to Cart
                             </button>
                         </div>
                     </div>
                 ))}
-
             </div>
         </div>
     );

@@ -16,7 +16,10 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-20">
                         <div className="flex items-center">
-                            <span className="font-extrabold font-sans text-3xl text-indigo-600">APNA-MART</span>
+                            <Link
+                                to="/">
+                                <span className="font-extrabold font-sans text-3xl text-indigo-600">APNA-MART</span>
+                            </Link>
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
@@ -43,7 +46,6 @@ export default function Navbar() {
                                 <i className="fas fa-search text-lg"></i>
                             </button>
 
-                            {/* Cart Button */}
                             <button
                                 className="text-gray-700 hover:text-indigo-600 relative cursor-pointer"
                                 onClick={() => setCartOpen(!cartOpen)}
@@ -51,7 +53,7 @@ export default function Navbar() {
                                 <i className="fas fa-shopping-cart text-lg"></i>
                                 {totalQuantity > 0 && (
                                     <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
-                                        {totalQuantity} 
+                                        {totalQuantity}
                                     </span>
                                 )}
                             </button>
@@ -67,7 +69,6 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Cart Sidebar Component */}
             <CartSidebar
                 isOpen={cartOpen}
                 onClose={() => setCartOpen(false)}
