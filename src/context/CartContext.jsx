@@ -3,8 +3,8 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    
     const [cartItems, setCartItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     const addToCart = (product) => {
         const existing = cartItems.find(item => item.id === product.id)
@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, selectedItem, setSelectedItem }}>
             {children}
         </CartContext.Provider>
     )

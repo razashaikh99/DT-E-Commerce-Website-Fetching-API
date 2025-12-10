@@ -11,7 +11,7 @@ export default function Navbar() {
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.qty, 0)
 
     return (
-        <>
+        <div>
             <nav className="bg-white shadow-lg fixed w-full top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-20">
@@ -73,6 +73,6 @@ export default function Navbar() {
                 isOpen={cartOpen}
                 onClose={() => setCartOpen(false)}
             />
-        </>
+        </div>
     )
 }

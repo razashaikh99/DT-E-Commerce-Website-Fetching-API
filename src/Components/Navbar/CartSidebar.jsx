@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CartSidebar({ isOpen, onClose }) {
 
     const { cartItems, removeFromCart } = useContext(CartContext);
+    const navigate = useNavigate();
 
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
@@ -53,6 +55,15 @@ export default function CartSidebar({ isOpen, onClose }) {
                         <div className="mt-4 pb-12 font-bold text-xl">
                             Total: ${totalPrice.toFixed(2)}
                         </div>
+                        <button
+                            onClick={() => {
+                                onClose();
+                                navigate("/checkout");
+                            }}
+                            className="w-full bg-indigo-600 text-white py-2 rounded-lg mt-4 hover:bg-indigo-700 transition"
+                        >
+                            Checkout
+                        </button>
                     </div>
                 )}
             </div>
