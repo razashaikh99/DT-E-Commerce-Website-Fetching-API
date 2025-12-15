@@ -14,7 +14,7 @@ export default function ContactInfo() {
                             </div>
                             <div>
                                 <h3 className="font-semibold text-gray-900">Store Address</h3>
-                                <p className="text-gray-600">123 Fashion Street, Mall Road<br />New Delhi, Delhi 110001<br />India</p>
+                                <p className="text-gray-600">Abc Street, North Nazimabad,<br />Karachi, Pakistan</p>
                             </div>
                         </div>
 
@@ -25,8 +25,8 @@ export default function ContactInfo() {
                             <div>
                                 <h3 className="font-semibold text-gray-900">Phone Numbers</h3>
                                 <p className="text-gray-600">
-                                    Customer Care: <Link to="tel:+911234567890" className="text-indigo-600 hover:underline">+91 123 456 7890</Link><br />
-                                    Sales: <Link to="tel:+919876543210" className="text-indigo-600 hover:underline">+91 987 654 3210</Link>
+                                    Customer Care: <Link to="tel:+911234567890" className="text-indigo-600 hover:underline">+92 332 3095007</Link><br />
+                                    Sales: <Link to="tel:+919876543210" className="text-indigo-600 hover:underline">+92 327 8459299</Link>
                                 </p>
                             </div>
                         </div>
@@ -59,6 +59,10 @@ export default function ContactInfo() {
                             <h3 className="font-semibold text-gray-900 mb-2">❓ Do you offer international shipping?</h3>
                             <p className="text-sm text-gray-600">Yes, we ship to over 50 countries worldwide. Shipping rates vary by location.</p>
                         </div>
+                        {/* <div className="bg-gray-50 p-4 rounded-lg">
+                            <h3 className="font-semibold text-gray-900 mb-2">❓ What's your privacy policy?</h3>
+                            <p className="text-sm text-gray-600">We offer 30-day returns on unworn shoes with original packaging. Some exclusions apply.</p>
+                        </div> */}
                     </div>
                 </div>
             </div>
