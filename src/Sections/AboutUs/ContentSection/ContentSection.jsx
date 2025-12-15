@@ -8,7 +8,7 @@ export default function ContentSection() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <img
-                            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53bf129a-3531-40d2-8cc6-2f05a95829b1.png"
+                            src="https://img.freepik.com/free-photo/food-background-food-concept-with-various-tasty-fresh-ingredients-cooking-italian-food-ingredients-view-from-with-copy-space_1220-1373.jpg"
                             alt="Stylish sneakers on display"
                             className="rounded-2xl shadow-lg w-full object-cover"
                         />

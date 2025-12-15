@@ -24,7 +24,7 @@ export default function HeroSection() {
                         </div>
 
                         <div className="relative">
-                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53bf129a-3531-40d2-8cc6-2f05a95829b1.png" alt="Modern athletic sneakers in various colors arranged artistically on a clean white background" className="rounded-2xl shadow-2xl" onerror="this.style.display='none'" />
+                            <img src="https://img.freepik.com/free-photo/food-background-food-concept-with-various-tasty-fresh-ingredients-cooking-italian-food-ingredients-view-from-with-copy-space_1220-1373.jpg" alt="Modern athletic sneakers in various colors arranged artistically on a clean white background" className="rounded-2xl shadow-2xl h-100" onerror="this.style.display='none'" />
                                 <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-2xl shadow-xl">
                                     <div className="text-center">
                                         <div className="text-2xl font-bold text-indigo-600">$399</div>

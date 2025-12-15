@@ -9,7 +9,7 @@ export default function HomePage() {
     return (
         <>
             <HeroSection />
-            <CategoriesSection />
+            {/* <CategoriesSection /> */}
             <FeaturedProducts />
             <OfferSection />
             <NewsletterSection />
