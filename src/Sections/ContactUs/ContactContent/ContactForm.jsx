@@ -16,8 +16,11 @@ export default function ContactForm() {
                         toast.success("Form Submited Successfully...")
                         resetForm();
                     }}
+                    validateOnBlur={false}
+                    validateOnMount={false}
+                    validateOnChange={false}
                 >
-                    {({ touched, errors }) => (
+                    {({ errors }) => (
 
                         <Form className='space-y-3'>
                             <div className="grid md:grid-cols-2 gap-6">
@@ -29,7 +32,7 @@ export default function ContactForm() {
                                         placeholder="Your first name"
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     />
-                                    {touched.firstName && errors.firstName && (
+                                    {errors.firstName && (
                                         <p className='text-red-500 text-sm py-1'>{errors.firstName}</p>
                                     )}
                                 </div>
@@ -41,7 +44,7 @@ export default function ContactForm() {
                                         placeholder="Your last name"
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     />
-                                    {touched.lastName && errors.lastName && (
+                                    {errors.lastName && (
                                         <p className='text-red-500 text-sm py-1'>{errors.lastName}</p>
                                     )}
                                 </div>
@@ -55,7 +58,7 @@ export default function ContactForm() {
                                     placeholder="your@gmail.com"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
-                                {touched.email && errors.email && (
+                                {errors.email && (
                                     <p className='text-red-500 text-sm py-1'>{errors.email}</p>
                                 )}
                             </div>
@@ -68,7 +71,7 @@ export default function ContactForm() {
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     placeholder="+92 300 1234567"
                                 />
-                                {touched.tel && errors.tel && (
+                                {errors.tel && (
                                     <p className='text-red-500 text-sm py-1'>{errors.tel}</p>
                                 )}
                             </div>
@@ -88,7 +91,7 @@ export default function ContactForm() {
                                     <option>Wholesale Inquiry</option>
                                     <option>Other</option>
                                 </Field>
-                                {touched.subject && errors.subject && (
+                                {errors.subject && (
                                     <p className='text-red-500 text-sm py-1'>{errors.subject}</p>
                                 )}
                             </div>
@@ -102,7 +105,7 @@ export default function ContactForm() {
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     placeholder="Tell us how we can help you..."
                                 />
-                                {touched.message && errors.message && (
+                                {errors.message && (
                                     <p className='text-red-500 text-sm pb-1'>{errors.message}</p>
                                 )}
                             </div>
