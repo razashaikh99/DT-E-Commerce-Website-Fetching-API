@@ -12,12 +12,12 @@ export default function ContactForm() {
                     initialValues={contactSchema}
                     validationSchema={contactValidationSchema}
                     onSubmit={(values, { resetForm }) => {
-                        console.log(values);
+                        console.log("Values: ", values);
                         toast.success("Form Submited Successfully...")
                         resetForm();
                     }}
                 >
-                    {({ errors, touched }) => (
+                    {({ touched, errors }) => (
 
                         <Form className='space-y-3'>
                             <div className="grid md:grid-cols-2 gap-6">
