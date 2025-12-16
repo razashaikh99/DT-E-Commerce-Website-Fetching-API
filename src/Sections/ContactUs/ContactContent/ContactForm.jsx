@@ -30,7 +30,7 @@ export default function ContactForm() {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     />
                                     {touched.firstName && errors.firstName && (
-                                        <p className='text-red-500 text-md py-1'>{errors.firstName}</p>
+                                        <p className='text-red-500 text-sm py-1'>{errors.firstName}</p>
                                     )}
                                 </div>
                                 <div>
@@ -42,7 +42,7 @@ export default function ContactForm() {
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                     />
                                     {touched.lastName && errors.lastName && (
-                                        <p className='text-red-500 text-md py-1'>{errors.lastName}</p>
+                                        <p className='text-red-500 text-sm py-1'>{errors.lastName}</p>
                                     )}
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ export default function ContactForm() {
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
                                 {touched.email && errors.email && (
-                                    <p className='text-red-500 text-md py-1'>{errors.email}</p>
+                                    <p className='text-red-500 text-sm py-1'>{errors.email}</p>
                                 )}
                             </div>
 
@@ -69,7 +69,7 @@ export default function ContactForm() {
                                     placeholder="+92 300 1234567"
                                 />
                                 {touched.tel && errors.tel && (
-                                    <p className='text-red-500 text-md py-1'>{errors.tel}</p>
+                                    <p className='text-red-500 text-sm py-1'>{errors.tel}</p>
                                 )}
                             </div>
 
@@ -89,7 +89,7 @@ export default function ContactForm() {
                                     <option>Other</option>
                                 </Field>
                                 {touched.subject && errors.subject && (
-                                    <p className='text-red-500 text-md py-1'>{errors.subject}</p>
+                                    <p className='text-red-500 text-sm py-1'>{errors.subject}</p>
                                 )}
                             </div>
 
@@ -103,7 +103,7 @@ export default function ContactForm() {
                                     placeholder="Tell us how we can help you..."
                                 />
                                 {touched.message && errors.message && (
-                                    <p className='text-red-500 text-md py-1'>{errors.message}</p>
+                                    <p className='text-red-500 text-sm pb-1'>{errors.message}</p>
                                 )}
                             </div>
 
