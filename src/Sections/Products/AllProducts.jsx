@@ -9,10 +9,10 @@ import { fetchAllProducts } from '../../store/action/productAction';
 export default function AllProducts() {
 
     const dispatch = useDispatch();
-    const { products, loading } = useSelector(state => state.products);
-
-    const { addToCart, setSelectedItem } = useContext(CartContext)
     const navigate = useNavigate();
+    
+    const { products, loading } = useSelector(state => state.products);
+    const { addToCart, setSelectedItem } = useContext(CartContext)
 
     useEffect(() => {
         dispatch(fetchAllProducts());
@@ -25,7 +25,7 @@ export default function AllProducts() {
     }
 
     const toastifyNotify = (product) => {
-        addToCart(product)
+        dispatch(addToCart(product))
         toast.success(`${product.title} added to cart!`)
     }
 
@@ -39,7 +39,7 @@ export default function AllProducts() {
 
                 {products.map((product) => (
                     <div
-                        key={product.id}
+                        key={product?.id}
                         className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
 
                         onClick={() => { 
@@ -49,15 +49,15 @@ export default function AllProducts() {
                     >
                         <div className="relative">
                             <img
-                                src={product.thumbnail}
-                                alt={product.title}
+                                src={product?.thumbnail}
+                                alt={product?.title}
                                 className="w-full h-48 object-cover"
                                 loading="lazy"
                             />
 
-                            {product.brand && (
+                            {product?.brand && (
                                 <div className="absolute top-2 right-2 px-3 rounded-full text-sm font-semibold text-white bg-orange-400/80">
-                                    {product.brand}
+                                    {product?.brand ? product?.brand : product?.title}
                                 </div>
                             )}
 
@@ -65,18 +65,18 @@ export default function AllProducts() {
 
                         <div className="p-6">
                             <h3 className="font-semibold text-gray-900 text-lg h-20">
-                                {product.title}
+                                {product?.title}
                             </h3>
 
                             <div className="flex items-center mt-2 text-sm font-bold">Category:
                                 <span className="text-gray-600 ml-1">
-                                    {product.category}
+                                    {product?.category}
                                 </span>
                             </div>
 
                             <div className="flex items-center justify-between mt-4">
                                 <span className="text-2xl font-bold text-indigo-600">
-                                    ${product.price}
+                                    ${product?.price}
                                 </span>
                             </div>
 

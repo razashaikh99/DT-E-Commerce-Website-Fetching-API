@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { toast } from 'react-toastify';
@@ -7,7 +6,7 @@ export default function ProductDetails() {
 
     const { addToCart, selectedItem } = useContext(CartContext);
 
-    if (!selectedItem) return <p>No Product Selected!</p>
+    if (!selectedItem) return <p className="py-60 text-center text-red-600/50 text-4xl font-extrabold">No Product Selected!</p>
 
     const toastifyNotify = (product) => {
         addToCart(product)
@@ -32,24 +31,31 @@ export default function ProductDetails() {
                         <h1 className="text-4xl font-bold text-gray-900">
                             {selectedItem?.title}
                         </h1>
-
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Category:</span> {selectedItem?.category}</div>
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Rating:</span> {selectedItem?.rating}</div>
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Brand: </span>
+                        <div className="flex items-center space-x-4">
+                            <span className="text-3xl font-bold text-indigo-600">${selectedItem?.price} </span>
+                        </div>
+                        <hr />
+                        <p className="text-gray-700">
+                            {selectedItem?.description}
+                        </p>
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Category: </span>
+                            {selectedItem?.category}
+                        </div>
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Rating: </span>
+                            {selectedItem?.rating}
+                        </div>
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Brand:  </span>
                             {!selectedItem.brand ? "Null" : selectedItem?.brand}
                         </div>
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Stock Item:</span> {selectedItem?.stock}</div>
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Available Stock:</span> {selectedItem?.availabilityStatus}</div>
-                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Return Policy:</span> {selectedItem?.returnPolicy}</div>
-
-                        <div className="flex items-center space-x-4">
-                            <span className="text-3xl font-bold text-indigo-600">${selectedItem?.price}</span>
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Stock Item: </span>
+                            {selectedItem?.stock}
                         </div>
-
-                        <p className="text-gray-700">
-                            {selectedItem.description}
-                        </p>
-
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Available Stock: </span>
+                            {selectedItem?.availabilityStatus}
+                        </div>
+                        <div className="text-indigo-600 font-semibold"><span className="text-gray-500">Return Policy: </span>
+                            {selectedItem?.returnPolicy}
+                        </div>
                         <button onClick={() => toastifyNotify(selectedItem)}
                             className="w-60 mt-4 contact-gradient text-white py-3 rounded-full hover:bg-indigo-700 transition hover:scale-105 cursor-pointer"
                         >
@@ -61,3 +67,15 @@ export default function ProductDetails() {
         </section >
     );
 }
+
+
+
+
+
+
+
+
+// =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/ >=|=|=< /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
+// =\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\  FETCH  \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\
+// =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/ >=|=|=< /=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
+
