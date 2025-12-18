@@ -13,7 +13,7 @@ export default function AllProducts() {
     const navigate = useNavigate();
     
     const { products, loading } = useSelector(state => state.products);
-    const { addToCart } = useContext(CartContext)
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         dispatch(fetchAllProducts());
