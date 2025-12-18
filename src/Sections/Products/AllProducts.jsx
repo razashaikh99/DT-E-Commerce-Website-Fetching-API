@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from '../../store/action/productAction';
+import { selectProduct } from '../../store/action/productDetailAction';
 
 export default function AllProducts() {
 
@@ -12,7 +13,7 @@ export default function AllProducts() {
     const navigate = useNavigate();
     
     const { products, loading } = useSelector(state => state.products);
-    const { addToCart, setSelectedItem } = useContext(CartContext)
+    const { addToCart } = useContext(CartContext)
 
     useEffect(() => {
         dispatch(fetchAllProducts());
@@ -25,8 +26,8 @@ export default function AllProducts() {
     }
 
     const toastifyNotify = (product) => {
-        dispatch(addToCart(product))
-        toast.success(`${product.title} added to cart!`)
+        addToCart(product)
+        toast.success(`${product.title} added to cart!`);
     }
 
     return (
@@ -43,7 +44,7 @@ export default function AllProducts() {
                         className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
 
                         onClick={() => { 
-                            setSelectedItem(product)
+                            dispatch(selectProduct(product))
                             navigate("/product-details")
                         }}
                     >
