@@ -24,7 +24,7 @@ export default function Navbar() {
                         <div className="flex items-center">
                             <Link
                                 to="/">
-                                <span className="font-extrabold font-sans text-3xl text-indigo-600">APNA-MART</span>
+                                <span className="font-extrabold text-3xl text-indigo-600">AlBayt Mart</span>
                             </Link>
                         </div>
 
@@ -47,7 +47,10 @@ export default function Navbar() {
                                 className="text-gray-700 hover:text-indigo-600">Contact Us</Link>
                         </div>
 
-                        <div className="flex items-center space-x-4">
+
+
+                        <div className="flex items-center space-x-6">
+
                             <button className="text-gray-700 hover:text-indigo-600">
                                 <i className="fas fa-search text-lg"></i>
                             </button>
@@ -70,6 +73,11 @@ export default function Navbar() {
                             <button className="md:hidden text-gray-700">
                                 <i className="fas fa-bars text-lg"></i>
                             </button>
+                            
+                            {/* <button className='bw-full contact-gradient text-white py-2 px-9 rounded-full font-semibold hover:bg-indigo-700 transition hover:scale-105 cursor-pointer'>
+                                Login
+                            </button> */}
+                            
                         </div>
                     </div>
                 </div>

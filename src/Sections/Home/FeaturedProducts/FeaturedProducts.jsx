@@ -63,7 +63,7 @@ export default function FeaturedProducts() {
                                     </span>
                                 </div>
 
-                                <button className="w-full mt-4 contact-gradient text-white py-2 rounded-lg hover:bg-indigo-700 transition hover:scale-105 cursor-pointer">
+                                <button className="w-full mt-4 contact-gradient text-white py-2 rounded-full hover:bg-indigo-700 transition hover:scale-105 cursor-pointer">
                                     Add to Cart
                                 </button>
                             </div>

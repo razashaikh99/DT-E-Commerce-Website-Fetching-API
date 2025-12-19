@@ -19,7 +19,7 @@ export default function NewsletterSection() {
                         />
                         <button
                             type="submit"
-                            className="bg-white text-pink-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap hover:scale-105 cursor-pointer"
+                            className="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 whitespace-nowrap transition hover:scale-105 cursor-pointer"
                         >
                             Subscribe Now
                         </button>

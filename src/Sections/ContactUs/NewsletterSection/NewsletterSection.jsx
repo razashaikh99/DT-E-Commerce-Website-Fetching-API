@@ -10,7 +10,7 @@ export default function NewsletterSection() {
                     <p className="text-lg mb-8">Subscribe to get exclusive offers, new arrivals, and style tips delivered to your inbox.</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <input type="email" placeholder="Enter your email address" className="px-6 py-3 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-white w-full sm:w-auto border-2" />
-                            <button className="bg-white text-pink-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition hover:scale-105 cursor-pointer whitespace-nowrap">
+                            <button className="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 whitespace-nowrap transition hover:scale-105 cursor-pointer">
                                 Subscribe Now
                             </button>
                     </div>
