@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from '../../store/action/cartAction';
 
 export default function ProductDetails() {
 
-    const { addToCart } = useContext(CartContext);
+    const dispatch = useDispatch();
 
     const selectedItem = useSelector(state => state.selectedProduct?.selectedItem)
+    // const cartItems = useSelector(state => state.cart.cartItems); 
 
     if (!selectedItem) return <p className="py-60 text-center text-red-600/50 text-4xl font-extrabold">No Product Selected!</p>
 
     const toastifyNotify = (product) => {
-        addToCart(product)
+        dispatch(addToCart(product))
         toast.success(`${product.title} added to cart!`)
     }
 
