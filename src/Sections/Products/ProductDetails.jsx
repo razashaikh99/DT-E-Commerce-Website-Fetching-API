@@ -12,8 +12,8 @@ export default function ProductDetails() {
     if (!selectedItem) return <p className="py-60 text-center text-red-600/50 text-4xl font-extrabold">No Product Selected!</p>
 
     const toastifyNotify = (product) => {
-        dispatch(addToCart(product))
-        toast.success(`${product.title} added to cart!`)
+        dispatch(addToCart(product));
+        toast.success(`${product.title} added to cart!`);
     }
 
     return (

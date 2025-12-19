@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import CartSidebar from './CartSidebar';
-import { CartContext } from '../../context/CartContext';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
 
     const [cartOpen, setCartOpen] = useState(false);
-    const { cartItems } = useContext(CartContext);
 
-    const totalQuantity = cartItems.reduce((acc, item) => acc + item.qty, 0)
+    const cartItems = useSelector(
+        state => state.cartProduct.cartItems
+    );
+
+    const totalQuantity = cartItems.reduce(
+        (acc, item) => acc + item.qty,
+        0
+    );
 
     return (
         <div>

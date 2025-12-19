@@ -1,11 +1,15 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeFromCart } from "../../store/action/cartAction";
 
 export default function CartSidebar({ isOpen, onClose }) {
 
-    const { cartItems, removeFromCart } = useContext(CartContext);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const cartItems = useSelector(
+        state => state.cartProduct.cartItems
+    );
 
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
@@ -41,10 +45,10 @@ export default function CartSidebar({ isOpen, onClose }) {
                                     <h3 className="font-semibold">{item.title}</h3>
                                     <p className="text-gray-500 text-sm">Qty: {item.qty}</p>
                                     <p className="text-indigo-600 font-bold">
-                                        ${item.price.toFixed(2) * item.qty}
+                                        ${item.price.toFixed(2) * item.qty.toFixed(2)}
                                     </p>
                                     <button
-                                        onClick={() => removeFromCart(item.id)}
+                                        onClick={() => dispatch(removeFromCart(item.id))}
                                         className="text-red-500 text-sm mt-1 cursor-pointer"
                                     >
                                         Remove

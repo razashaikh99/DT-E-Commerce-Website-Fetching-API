@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from '../../store/action/productAction';
 import { selectProduct } from '../../store/action/productDetailAction';
+import { addToCart } from '../../store/action/cartAction';
 
 export default function AllProducts() {
 
@@ -13,7 +12,6 @@ export default function AllProducts() {
     const navigate = useNavigate();
     
     const { products, loading } = useSelector(state => state.products);
-    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         dispatch(fetchAllProducts());
@@ -26,7 +24,7 @@ export default function AllProducts() {
     }
 
     const toastifyNotify = (product) => {
-        addToCart(product)
+        dispatch(addToCart(product))
         toast.success(`${product.title} added to cart!`);
     }
 
