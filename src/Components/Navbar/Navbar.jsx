@@ -36,7 +36,11 @@ export default function Navbar() {
                             <Link
                                 to="/all-products"
                                 onClick={() => setCartOpen(false)}
-                                className="text-gray-700 hover:text-indigo-600">All Products</Link>
+                                className="text-gray-700 hover:text-indigo-600">Products</Link>
+                            <Link
+                                to="/categories"
+                                onClick={() => setCartOpen(false)}
+                                className="text-gray-700 hover:text-indigo-600">Categories</Link>
                             <Link
                                 to="/about-us"
                                 onClick={() => setCartOpen(false)}
@@ -46,8 +50,6 @@ export default function Navbar() {
                                 onClick={() => setCartOpen(false)}
                                 className="text-gray-700 hover:text-indigo-600">Contact Us</Link>
                         </div>
-
-
 
                         <div className="flex items-center space-x-6">
 
@@ -73,11 +75,11 @@ export default function Navbar() {
                             <button className="md:hidden text-gray-700">
                                 <i className="fas fa-bars text-lg"></i>
                             </button>
-                            
+
                             {/* <button className='bw-full contact-gradient text-white py-2 px-9 rounded-full font-semibold hover:bg-indigo-700 transition hover:scale-105 cursor-pointer'>
                                 Login
                             </button> */}
-                            
+
                         </div>
                     </div>
                 </div>

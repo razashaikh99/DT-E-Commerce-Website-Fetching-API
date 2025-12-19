@@ -6,6 +6,7 @@ import AllProducts from '../Sections/Products/AllProducts'
 import ProductDetails from '../Sections/Products/ProductDetails'
 import Checkout from '../Sections/Products/Checkout'
 import ConfirmOrder from '../Sections/Products/ConfirmOrder'
+import Category from '../Pages/Categories/Category'
 
 export default function AppRoutes() {
     return (
@@ -14,6 +15,7 @@ export default function AppRoutes() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/all-products" element={<AllProducts />} />
                 <Route path="/product-details" element={<ProductDetails />} />
+                <Route path="/categories" element={<Category />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/confirm-order" element={<ConfirmOrder />} />
                 <Route path="/about-us" element={<AboutUsPage />} />
