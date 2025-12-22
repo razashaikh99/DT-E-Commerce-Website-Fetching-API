@@ -187,7 +187,7 @@ export default function CategoryDetails() {
             <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-200">
                 <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center justify-center gap-2 mx-auto px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
+                    className="flex items-center justify-center gap-2 mx-auto px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 cursor-pointer"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
