@@ -10,39 +10,43 @@ export default function Checkout() {
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
     return (
-        <div className="max-w-4xl mx-auto mt-24 p-6">
-            <h1 className="text-3xl font-bold mb-6">Checkout</h1>
+        <div className="max-w-5xl mx-auto mt-20 p-6 bg-gray-50 rounded-lg shadow-md">
+            <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Checkout</h1>
 
             {cartItems.length === 0 ? (
-                <p>No items in cart.</p>
+                <p className="text-center text-gray-600 text-lg">Your cart is empty.</p>
             ) : (
-                <div className="space-y-4">
-                    {cartItems.map(item => (
-                        <div key={item.id} className="flex items-center gap-4 border-b pb-3">
-                            <img src={item.thumbnail} className="w-20 h-20 rounded" />
-                            <div>
-                                <h2 className="font-semibold">{item.title}</h2>
-                                <p>Qty: {item.qty}</p>
-                                <p className="font-bold text-indigo-600">
-                                    ${item.price.toFixed(2) * item.qty.toFixed(2)}/-
-                                </p>
+                <>
+                    <div className="space-y-6">
+                        {cartItems.map(item => (
+                            <div key={item.id} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-b pb-4">
+                                <img
+                                    src={item.thumbnail}
+                                    alt={item.title}
+                                    className="bg-white border-b-3 border-green-600 w-28 h-28 object-cover rounded-lg"
+                                />
+                                <div className="flex-1">
+                                    <h2 className="text-lg font-semibold text-gray-900">{item.title}</h2>
+                                    <p className="text-gray-600 mt-1">Quantity: <span className="font-medium">{item.qty}</span></p>
+                                    <p className="text-indigo-600 font-bold mt-1 text-lg">
+                                        ${(item.price * item.qty).toFixed(2)}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-
-                    <div className="mt-6 text-xl font-bold">
-                        Total: ${totalPrice.toFixed(2)}/-
+                        ))}
                     </div>
 
-                    <button
-                        className="bg-green-600 text-white py-3 rounded-lg w-full mt-4 hover:bg-green-700"
-                        onClick={() => navigate("/confirm-order")}
-                    >
-                        Confirm Order
-                    </button>
-                </div>
+                    <div className="mt-8 flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-lg shadow">
+                        <span className="text-2xl font-bold text-gray-800">Total: ${totalPrice.toFixed(2)}</span>
+                        <button
+                            onClick={() => navigate("/confirm-order")}
+                            className="mt-4 sm:mt-0 contact-gradient text-white py-3 px-8 rounded-full hover:bg-green-700 font-semibold transition hover:scale-105 cursor-pointer"
+                        >
+                            Confirm Order
+                        </button>
+                    </div>
+                </>
             )}
-
         </div>
     );
 }

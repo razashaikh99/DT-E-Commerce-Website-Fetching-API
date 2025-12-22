@@ -18,8 +18,11 @@ export default function AllProducts() {
     }, [dispatch]);
 
     if (loading) {
-        return <div className='flex justify-center'>
-            <div className="my-50 w-12 h-12 rounded-full border-6 animate-spin border-blue-500 border-t-transparent"></div>
+        return <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+            <div className="text-center">
+                <div className="w-20 h-20 mx-auto rounded-full border-[6px] border-blue-500 border-t-transparent animate-spin mb-6"></div>
+                <p className="text-gray-600 text-lg font-medium">Loading amazing products...</p>
+            </div>
         </div>
     }
 

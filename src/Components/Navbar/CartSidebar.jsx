@@ -59,15 +59,17 @@ export default function CartSidebar({ isOpen, onClose }) {
                         <div className="mt-4 pb-6 font-bold text-xl">
                             Total: ${totalPrice.toFixed(2)}/-
                         </div>
-                        <button
-                            onClick={() => {
-                                onClose();
-                                navigate("/checkout");
-                            }}
-                            className="w-full bg-indigo-600 text-white py-2 rounded-lg mt-4 hover:bg-indigo-700 transition mb-10"
-                        >
-                            Checkout
-                        </button>
+                        <div className="flex justify-center">
+                            <button
+                                onClick={() => {
+                                    onClose();
+                                    navigate("/checkout");
+                                }}
+                                className="contact-gradient text-white py-2 rounded-full mt-4 px-18 transition hover:scale-105 cursor-pointer mb-10"
+                            >
+                                Checkout
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>

@@ -6,13 +6,13 @@ export default function ConfirmOrder() {
 
     return (
         <div className="text-center py-40">
-            <h2 className="text-3xl font-bold text-green-600 mb-4">Order Confirmed!</h2>
+            <h2 className="text-4xl font-bold text-green-600 mb-4">Order Confirmed!</h2>
             <p className="text-gray-700">Thank you for your purchase. Your order has been placed successfully.</p>
             <button
                 onClick={() => {
                     window.location.href = "/";
                 }}
-                className="w-90 bg-indigo-600 text-white py-2 rounded-lg mt-4 hover:bg-indigo-700 transition"
+                className="w-90 contact-gradient text-white py-2 rounded-full mt-8 hover:bg-indigo-700 transition hover:scale-105 cursor-pointer"
             >
                 Back to Home!
             </button>
