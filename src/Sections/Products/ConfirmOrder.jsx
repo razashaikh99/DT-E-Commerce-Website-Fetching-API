@@ -16,7 +16,7 @@ export default function ConfirmOrder() {
         // Auto redirect after 10 seconds
         const timer = setTimeout(() => {
             navigate("/");
-        }, 60000);
+        }, 10000);
 
         return () => clearTimeout(timer);
     }, [navigate]);
