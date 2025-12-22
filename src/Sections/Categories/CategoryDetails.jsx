@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProductsByCategory } from "../../store/action/categoryProductsAction";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { addToCart } from "../../store/action/cartAction";
 import { toast } from "react-toastify";
+import { selectProduct } from "../../store/action/productDetailAction";
 
 
 export default function CategoryDetails() {
 
     const { slug } = useParams();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { products, loading } = useSelector(state => state.categoryProducts);
@@ -34,7 +36,7 @@ export default function CategoryDetails() {
 
         <div className="bg-gray-50 min-h-screen py-30 px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-                All Products
+                {slug.replace("-", " ")} products
             </h1>
 
             <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -70,11 +72,14 @@ export default function CategoryDetails() {
                                 {product?.title}
                             </h3>
 
-                            <div className="flex items-center mt-2 text-sm font-bold">Brand:
-                                <span className="text-gray-600 ml-1">
-                                    {product?.brand}
-                                </span>
-                            </div>
+                            {product?.brand && (
+                                <div className="flex items-center mt-2 text-sm font-bold">Brand:
+                                    <span className="text-gray-600 ml-1">
+                                        {product?.brand ? product?.brand : ""}
+                                    </span>
+                                </div>
+                            )}
+
 
                             <div className="flex items-center mt-2 text-sm font-bold">Warranty:
                                 <span className="text-gray-600 ml-1">
