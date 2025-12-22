@@ -45,7 +45,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                                     <h3 className="font-semibold">{item.title}</h3>
                                     <p className="text-gray-500 text-sm">Qty: {item.qty}</p>
                                     <p className="text-indigo-600 font-bold">
-                                        ${item.price.toFixed(2) * item.qty.toFixed(2)}
+                                        ${item.price.toFixed(2) * item.qty.toFixed(2)}/-
                                     </p>
                                     <button
                                         onClick={() => dispatch(removeFromCart(item.id))}
@@ -56,15 +56,15 @@ export default function CartSidebar({ isOpen, onClose }) {
                                 </div>
                             </div>
                         ))}
-                        <div className="mt-4 pb-12 font-bold text-xl">
-                            Total: ${totalPrice.toFixed(2)}
+                        <div className="mt-4 pb-6 font-bold text-xl">
+                            Total: ${totalPrice.toFixed(2)}/-
                         </div>
                         <button
                             onClick={() => {
                                 onClose();
                                 navigate("/checkout");
                             }}
-                            className="w-full bg-indigo-600 text-white py-2 rounded-lg mt-4 hover:bg-indigo-700 transition"
+                            className="w-full bg-indigo-600 text-white py-2 rounded-lg mt-4 hover:bg-indigo-700 transition mb-10"
                         >
                             Checkout
                         </button>

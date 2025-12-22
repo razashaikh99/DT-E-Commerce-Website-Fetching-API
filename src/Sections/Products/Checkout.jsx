@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
-    const { cartItems } = useContext(CartContext);
+
     const navigate = useNavigate();
+
+    const cartItems = useSelector(state => state.cartProduct.cartItems);
 
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
@@ -23,14 +24,14 @@ export default function Checkout() {
                                 <h2 className="font-semibold">{item.title}</h2>
                                 <p>Qty: {item.qty}</p>
                                 <p className="font-bold text-indigo-600">
-                                    ${item.price.toFixed(2) * item.qty.toFixed(2)}
+                                    ${item.price.toFixed(2) * item.qty.toFixed(2)}/-
                                 </p>
                             </div>
                         </div>
                     ))}
 
                     <div className="mt-6 text-xl font-bold">
-                        Total: ${totalPrice.toFixed(2)}
+                        Total: ${totalPrice.toFixed(2)}/-
                     </div>
 
                     <button
