@@ -32,7 +32,7 @@ export default function AllCategories() {
         {categories.map((category, index) => (
           <div
             key={index}
-            onClick={() => navigate(`/category/${category}`)}
+            onClick={() => navigate(`/categories/${category.slug}`)}
             className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1"
           >
             <div className="relative h-40 rounded-t-xl overflow-hidden">
