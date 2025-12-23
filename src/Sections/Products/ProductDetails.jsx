@@ -113,7 +113,7 @@ export default function ProductDetails() {
                             <div className="flex items-center gap-3">
                                 <div className={`px-4 py-2 rounded-full font-semibold ${selectedItem?.availabilityStatus === 'In Stock'
                                         ? 'bg-green-100 text-green-700'
-                                        : 'bg-red-100 text-red-700'
+                                        : 'bg-red-100 text-red-700' 
                                     }`}>
                                     {selectedItem?.availabilityStatus || 'Out of Stock'}
                                 </div>
@@ -123,8 +123,11 @@ export default function ProductDetails() {
                             </div>
                         </div>
 
+                        <div className='w-50 bg-amber-200 h-10'>
+</div>
+
                         {/* Divider */}
-                        <div className="border-t border-gray-200 my-8"></div>
+                        <div className="border border-gray-200 my-8"></div>
 
                         {/* Description */}
                         <div className="space-y-4">
@@ -219,23 +222,13 @@ export default function ProductDetails() {
                         <div className="flex flex-col sm:flex-row gap-4 pt-8">
                             <button
                                 onClick={() => toastifyNotify(selectedItem)}
-                                className="contact-gradient text-white font-bold py-4 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3"
+                                className="contact-gradient text-white font-bold py-3 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3"
                             >
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
                                 Add to Cart
                             </button>
-
-                            {/* <button
-                                onClick={() => navigate("/checkout")}
-                                className="bg-white border-2 border-blue-600 text-blue-600 font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                                Buy Now
-                            </button> */}
                         </div>
 
                         {/* Trust Badges */}
