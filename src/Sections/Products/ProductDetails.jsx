@@ -1,19 +1,23 @@
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from '../../store/action/cartAction';
+import { decreaseQuantity, increaseQuantity } from '../../store/slice/productDetailSlice';
 
 export default function ProductDetails() {
 
     const dispatch = useDispatch();
 
-    const selectedItem = useSelector(state => state.selectedProduct?.selectedItem)
+    const { selectedItem, quantity, maxQuantity } = useSelector(state => state.selectedProduct)
     // const cartItems = useSelector(state => state.cart.cartItems); 
 
     if (!selectedItem) return <p className="py-60 text-center text-red-600/50 text-4xl font-extrabold">No Product Selected!</p>
 
     const toastifyNotify = (product) => {
-        dispatch(addToCart(product));
-        toast.success(`${product.title} added to cart!`);
+        dispatch(addToCart({
+            ...selectedItem,
+            qty: quantity
+        }));
+        toast.success(`${product.title} (${quantity} items) added to cart!`);
     }
 
     return (
@@ -112,8 +116,8 @@ export default function ProductDetails() {
                             {/* Stock Status */}
                             <div className="flex items-center gap-3">
                                 <div className={`px-4 py-2 rounded-full font-semibold ${selectedItem?.availabilityStatus === 'In Stock'
-                                        ? 'bg-green-100 text-green-700'
-                                        : 'bg-red-100 text-red-700' 
+                                    ? 'bg-green-100 text-green-700'
+                                    : 'bg-red-100 text-red-700'
                                     }`}>
                                     {selectedItem?.availabilityStatus || 'Out of Stock'}
                                 </div>
@@ -123,8 +127,37 @@ export default function ProductDetails() {
                             </div>
                         </div>
 
-                        <div className='w-50 bg-amber-200 h-10'>
-</div>
+                        {/* Quantity Selector */}
+                        <div className="flex items-center gap-6 mt-6">
+                            <span className="text-lg font-semibold text-gray-700">
+                                Quantity
+                            </span>
+
+                            <div className="flex items-center border-2 border-gray-300 rounded-full overflow-hidden">
+                                {/* Minus Button */}
+                                <button
+                                    onClick={() => dispatch(decreaseQuantity())}
+                                    disabled={quantity === 1}
+                                    className="px-5 text-2xl font-bold text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                                >
+                                    −
+                                </button>
+
+                                {/* Quantity Number */}
+                                <span className="px-6 py-1 text-lg font-bold text-gray-900 select-none">
+                                    {quantity}
+                                </span>
+
+                                {/* Plus Button */}
+                                <button
+                                    onClick={() => dispatch(increaseQuantity())}
+                                    disabled={quantity === maxQuantity}
+                                    className="px-5 text-2xl font-bold text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
 
                         {/* Divider */}
                         <div className="border border-gray-200 my-8"></div>
@@ -222,7 +255,7 @@ export default function ProductDetails() {
                         <div className="flex flex-col sm:flex-row gap-4 pt-8">
                             <button
                                 onClick={() => toastifyNotify(selectedItem)}
-                                className="contact-gradient text-white font-bold py-3 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3"
+                                className="contact-gradient text-white font-bold py-3 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3 cursor-pointer"
                             >
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

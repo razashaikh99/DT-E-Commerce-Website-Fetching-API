@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeFromCart } from "../../store/action/cartAction";
+import { removeFromCart, increaseQuantity, decreaseQuantity } from "../../store/action/cartAction";
 
 export default function CartSidebar({ isOpen, onClose }) {
 
@@ -93,7 +93,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                                         {/* Product Details */}
                                         <div className="flex-1">
                                             <div className="flex justify-between items-start">
-                                                <h3 className="font-bold text-gray-900 text-lg line-clamp-2 pr-4">
+                                                <h3 className="font-bold text-gray-900 text-lg line-clamp-2">
                                                     {item.title}
                                                 </h3>
                                                 <button
@@ -106,15 +106,40 @@ export default function CartSidebar({ isOpen, onClose }) {
                                                 </button>
                                             </div>
 
-                                            <div className="flex items-center justify-between mt-4">
-                                                <div className="">
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center gap-3 mt-4">
+                                                    {/* Minus Button */}
+                                                    <button
+                                                        onClick={() => dispatch(decreaseQuantity(item.id))}
+                                                        className="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
+                                                    >
+                                                        −
+                                                    </button>
+
+                                                    {/* Quantity Display */}
+                                                    <span className="font-bold text-gray-900">{item.qty}</span>
+
+                                                    {/* Plus Button */}
+                                                    <button
+                                                        onClick={() => dispatch(increaseQuantity(item.id))}
+                                                        // disabled={qty === maxQty}
+                                                        className="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
+                                                    >
+                                                        +
+                                                    </button>
                                                 </div>
-                                                <div className="text-right">
-                                                    <p className="text-lg font-bold text-blue-600">
-                                                        ${(item.price * item.qty).toFixed(2)}
-                                                    </p>
+
+                                                <div className="flex items-center justify-between mt-4">
+                                                    <div className="">
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <p className="text-xl font-bold text-blue-600">
+                                                            ${(item.price * item.qty).toFixed(2)}/-
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +153,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                     <div className="border-t border-gray-200 bg-white p-6 absolute bottom-0 w-full">
                         {/* Order Summary */}
                         <div className="space-y-3 mb-6">
-                           
+
                             <div className="">
                                 <div className="flex justify-between text-xl font-bold text-gray-900">
                                     <span>Total Price:</span>

@@ -1,4 +1,4 @@
-import { RemoveFromCart, SetAddToCart } from "../slice/cartSlice"
+import { RemoveFromCart, SetAddToCart, IncreaseQuantity, DecreaseQuantity } from "../slice/cartSlice"
 
 export const addToCart = (product) => {
     return (dispatch) => {
@@ -12,3 +12,14 @@ export const removeFromCart = (id) => {
     };
 };
 
+export const increaseQuantity = (id) => {
+    return (dispatch) => {
+        dispatch(IncreaseQuantity(id));
+    };
+};
+
+export const decreaseQuantity = (id) => {
+    return (dispatch) => {
+        dispatch(DecreaseQuantity(id));
+    };
+};
