@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchFeatureProducts } from "../../../store/action/featureProductAction";
 import { addToCart } from "../../../store/action/cartAction";
 import { toast } from "react-toastify";
+import { selectProduct } from "../../../store/action/productDetailAction";
 
 export default function FeaturedProducts() {
 
@@ -50,6 +51,10 @@ export default function FeaturedProducts() {
                         <div
                             key={product.id}
                             className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2"
+                            onClick={() => {
+                                dispatch(selectProduct(product))
+                                navigate("/product-details")
+                            }}
                         >
                             {/* Product Image */}
                             <div className="relative overflow-hidden">
