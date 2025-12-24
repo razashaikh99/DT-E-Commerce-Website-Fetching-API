@@ -13,12 +13,13 @@ const productDetailSlice = createSlice({
         setSelectedProduct: (state, action) => {
             state.selectedItem = action.payload;
             state.quantity = 1;
+            state.maxQuantity = action.payload.stock;
 
-            if (action.payload?.stock && action.payload.stock < 10) {
-                state.maxQuantity = action.payload.stock;
-            } else {
-                state.maxQuantity = 10;
-            }
+            // if (action.payload?.stock && action.payload.stock < 10) {
+            //     state.maxQuantity = action.payload.stock;
+            // } else {
+            //     state.maxQuantity = 10;
+            // }
         },
         increaseQuantity: (state) => {
             if (state.quantity < state.maxQuantity) {
@@ -26,13 +27,13 @@ const productDetailSlice = createSlice({
             }
         },
         decreaseQuantity: (state) => {
-            if (state.quantity > 1){
+            if (state.quantity > 1) {
                 state.quantity -= 1;
             }
         },
         setQuantity: (state, action) => {
             const value = parseInt(action.payload);
-            if (!isNaN(value) && value >= 1 && value <= state.maxQuantity){
+            if (!isNaN(value) && value >= 1 && value <= state.maxQuantity) {
                 state.quantity = value
             }
         },
