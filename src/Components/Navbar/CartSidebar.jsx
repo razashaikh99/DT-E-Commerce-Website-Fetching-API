@@ -11,6 +11,8 @@ export default function CartSidebar({ isOpen, onClose }) {
         state => state.cartProduct.cartItems
     );
 
+    // const { quantity, maxQuantity } = useSelector(state => state.addToCart)
+
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
 
     return (
@@ -122,6 +124,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                                                     {/* Plus Button */}
                                                     <button
                                                         onClick={() => dispatch(increaseQuantity(item.id))}
+                                                        // disabled={quantity === maxQuantity}
                                                         // disabled={qty === maxQty}
                                                         className="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
                                                     >

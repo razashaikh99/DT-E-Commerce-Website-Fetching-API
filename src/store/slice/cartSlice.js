@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    cartItems: []
+    cartItems: [],
+    quantity: 1,
+    maxQuantity: null,
 }
 
 const cartSlice = createSlice({
@@ -29,6 +31,8 @@ const cartSlice = createSlice({
         IncreaseQuantity: (state, action) => {
             const item = state.cartItems.find(i => i.id === action.payload);
             if (item) item.qty += 1;
+            state.maxQuantity = action.payload.stock;
+
         },
         DecreaseQuantity: (state, action) => {
             const item = state.cartItems.find(i => i.id === action.payload);
