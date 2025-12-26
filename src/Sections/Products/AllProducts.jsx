@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from '../../store/action/productAction';
 import { selectProduct } from '../../store/action/productDetailAction';
 import { addToCart } from '../../store/action/cartAction';
+import Button from '../../Components/Button';
 
 export default function AllProducts() {
 
@@ -148,7 +149,7 @@ export default function AllProducts() {
                                     </div>
 
                                     <div className="flex gap-3">
-                                        <button
+                                        {/* <button
                                             onClick={(e) => {
                                                 toastifyNotify(product)
                                                 e.stopPropagation()
@@ -159,7 +160,15 @@ export default function AllProducts() {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                             </svg>
                                             Add to Cart
-                                        </button>
+                                        </button> */}
+                                        <Button 
+                                            icon={true}
+                                            text='Add to Cart'
+                                            onClick={(e) => {
+                                                toastifyNotify(product)
+                                                e.stopPropagation()
+                                            }} 
+                                        />
 
                                         <button
                                             onClick={(e) => {

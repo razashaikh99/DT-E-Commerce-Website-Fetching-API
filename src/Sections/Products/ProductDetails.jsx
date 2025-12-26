@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from '../../store/action/cartAction';
 import { decreaseQuantity, increaseQuantity } from '../../store/slice/productDetailSlice';
+import Button from '../../Components/Button';
 
 export default function ProductDetails() {
 
@@ -253,7 +254,7 @@ export default function ProductDetails() {
 
                         {/* Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                            <button
+                            {/* <button
                                 onClick={() => toastifyNotify(selectedItem)}
                                 className="contact-gradient text-white font-bold py-3 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3 cursor-pointer"
                             >
@@ -261,7 +262,12 @@ export default function ProductDetails() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
                                 Add to Cart
-                            </button>
+                            </button> */}
+                            <Button
+                                onClick={() => toastifyNotify(selectedItem)}
+                                icon={true}
+                                text='Add to Cart'
+                            />
                         </div>
 
                         {/* Trust Badges */}

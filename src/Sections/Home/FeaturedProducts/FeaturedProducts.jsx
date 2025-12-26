@@ -5,6 +5,7 @@ import { fetchFeatureProducts } from "../../../store/action/featureProductAction
 import { addToCart } from "../../../store/action/cartAction";
 import { toast } from "react-toastify";
 import { selectProduct } from "../../../store/action/productDetailAction";
+import Button from "../../../Components/Button";
 
 export default function FeaturedProducts() {
 
@@ -155,7 +156,7 @@ export default function FeaturedProducts() {
                                 </div>
 
                                 {/* Action Button */}
-                                <button
+                                {/* <button
                                     onClick={(e) => {
                                         toastifyNotify(product)
                                         e.stopPropagation()
@@ -165,7 +166,15 @@ export default function FeaturedProducts() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                     </svg>
                                     Add to Cart
-                                </button>
+                                </button> */}
+                                <Button
+                                    onClick={(e) => {
+                                        toastifyNotify(product)
+                                        e.stopPropagation()
+                                    }}
+                                    icon={true}
+                                    text='Add to Cart'
+                                />
                             </div>
 
                             {/* Corner Decoration */}
