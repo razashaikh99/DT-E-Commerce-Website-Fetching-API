@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeFromCart, increaseQuantity, decreaseQuantity } from "../../store/action/cartAction";
 import Button from "../Button";
-import { Handbag, Minus, Plus, ShoppingBag, ShoppingCart, Trash2, X } from "lucide-react";
+import { Plus, ShoppingCart } from "lucide-react";
 import SidebarProductCard from "../SidebarProductCard";
 import SidebarEmpty from "../SidebarEmpty";
 import SidebarHeader from "../SidebarHeader";

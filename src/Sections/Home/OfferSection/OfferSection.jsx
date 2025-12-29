@@ -8,7 +8,7 @@ export default function OfferSection() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl font-bold mb-6">Summer Sale - Up to 50% Off</h2>
                     <p className="text-xl mb-8">Hurry! Limited time offer on selected styles. Don't miss out on these amazing deals.</p>
-                    <div className="flex justify-center space-x-4">
+                    <div className="flex justify-center flex-wrap space-x-4 space-y-4">
                         <div className="bg-white text-indigo-900 px-4 py-2 rounded-lg">
                             <span className="text-2xl font-bold">02</span>
                             <span className="text-sm">Days</span>
