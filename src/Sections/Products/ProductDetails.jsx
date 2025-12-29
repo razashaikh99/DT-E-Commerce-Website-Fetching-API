@@ -3,15 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from '../../store/action/cartAction';
 import { decreaseQuantity, increaseQuantity } from '../../store/slice/productDetailSlice';
 import Button from '../../Components/Button';
+import { useState } from 'react';
+import NoProduct from '../../Components/NoProduct';
+import Breadcrumb from '../../Components/Breadcrumb';
+import { useNavigate } from 'react-router-dom';
+import { Box, ChartBarStacked, Check, CircleCheckBig, Clock, LockKeyhole, Minus, PackageCheck, Plus, ShieldCheck, Shuffle } from 'lucide-react';
 
 export default function ProductDetails() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const { selectedItem, quantity, maxQuantity } = useSelector(state => state.selectedProduct)
-    // const cartItems = useSelector(state => state.cart.cartItems); 
+    const { selectedItem, quantity, maxQuantity, } = useSelector(state => state.selectedProduct)
+    const [activeImage, setActiveImage] = useState(0)
 
-    if (!selectedItem) return <p className="py-60 text-center text-red-600/50 text-4xl font-extrabold">No Product Selected!</p>
+    console.log(activeImage);
+
+    if (!selectedItem) return <NoProduct />
 
     const toastifyNotify = (product) => {
         dispatch(addToCart({
@@ -25,21 +33,10 @@ export default function ProductDetails() {
         <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-32 pb-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Breadcrumb */}
-                <div className="mb-8">
-                    <nav className="flex items-center text-sm text-gray-600">
-                        <button
-                            onClick={() => navigate(-1)}
-                            className="flex items-center hover:text-blue-600 transition-colors"
-                        >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                            Back to Products
-                        </button>
-                        <span className="mx-2">/</span>
-                        <span className="text-gray-400 capitalize">{selectedItem?.category}</span>
-                    </nav>
-                </div>
+                <Breadcrumb
+                    onClick={() => navigate(-1)}
+                    category={selectedItem?.category}
+                />
 
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Product Images Section */}
@@ -54,7 +51,7 @@ export default function ProductDetails() {
                                 )}
                             </div>
                             <img
-                                src={selectedItem?.images?.[0] || selectedItem?.thumbnail}
+                                src={activeImage || selectedItem?.thumbnail}
                                 alt={selectedItem?.title}
                                 className="w-full h-auto max-h-96 object-contain transform group-hover:scale-105 transition-transform duration-500"
                             />
@@ -139,9 +136,9 @@ export default function ProductDetails() {
                                 <button
                                     onClick={() => dispatch(decreaseQuantity())}
                                     disabled={quantity === 1}
-                                    className="px-5 text-2xl font-bold text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                                    className="px-5 text-2xl font-bold text-gray-600 transition cursor-pointer"
                                 >
-                                    −
+                                    <Minus size={18} />
                                 </button>
 
                                 {/* Quantity Number */}
@@ -153,9 +150,9 @@ export default function ProductDetails() {
                                 <button
                                     onClick={() => dispatch(increaseQuantity())}
                                     disabled={quantity === maxQuantity}
-                                    className="px-5 text-2xl font-bold text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                                    className="px-5 text-2xl font-bold text-gray-600 transition cursor-pointer"
                                 >
-                                    +
+                                    <Plus size={18} />
                                 </button>
                             </div>
                         </div>
@@ -176,9 +173,7 @@ export default function ProductDetails() {
                             <div className="bg-blue-50/50 p-4 rounded-2xl">
                                 <div className="flex items-center gap-3 mb-2">
                                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                        </svg>
+                                        <ShieldCheck size={18} color='green' />
                                     </div>
                                     <span className="font-semibold text-gray-900">Warranty</span>
                                 </div>
@@ -188,9 +183,7 @@ export default function ProductDetails() {
                             <div className="bg-green-50/50 p-4 rounded-2xl">
                                 <div className="flex items-center gap-3 mb-2">
                                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                                        <CircleCheckBig size={18} color='green' />
                                     </div>
                                     <span className="font-semibold text-gray-900">Return Policy</span>
                                 </div>
@@ -204,9 +197,7 @@ export default function ProductDetails() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
-                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                        </svg>
+                                        <Shuffle size={18} color='gray' />
                                         <span className="text-gray-600">Brand:</span>
                                     </div>
                                     <span className="text-lg font-semibold text-gray-900 block">
@@ -216,9 +207,7 @@ export default function ProductDetails() {
 
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
-                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                        </svg>
+                                        <ChartBarStacked size={18} color='gray' />
                                         <span className="text-gray-600">Category:</span>
                                     </div>
                                     <span className="text-lg font-semibold text-gray-900 capitalize">
@@ -228,9 +217,7 @@ export default function ProductDetails() {
 
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
-                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                                        </svg>
+                                        <Box size={18} color='gray' />
                                         <span className="text-gray-600">SKU:</span>
                                     </div>
                                     <span className="text-lg font-semibold text-gray-900">
@@ -240,9 +227,7 @@ export default function ProductDetails() {
 
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
-                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                                        <Clock size={18} color='gray' />
                                         <span className="text-gray-600">Shipping:</span>
                                     </div>
                                     <span className="text-lg font-semibold text-green-600">
@@ -254,18 +239,9 @@ export default function ProductDetails() {
 
                         {/* Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                            {/* <button
-                                onClick={() => toastifyNotify(selectedItem)}
-                                className="contact-gradient text-white font-bold py-3 px-8 rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex-1 flex items-center justify-center gap-3 cursor-pointer"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                Add to Cart
-                            </button> */}
                             <Button
                                 onClick={() => toastifyNotify(selectedItem)}
-                                icon={true}
+                                icon={<Plus size={18} />}
                                 text='Add to Cart'
                             />
                         </div>
@@ -273,21 +249,15 @@ export default function ProductDetails() {
                         {/* Trust Badges */}
                         <div className="flex flex-wrap items-center justify-center gap-8 pt-8 border-t border-gray-200">
                             <div className="flex items-center gap-2 text-gray-600">
-                                <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
+                                <Check size={20} color='green' />
                                 <span>Authentic Products</span>
                             </div>
                             <div className="flex items-center gap-2 text-gray-600">
-                                <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
+                                <LockKeyhole size={20} color='green' />
                                 <span>Secure Payment</span>
                             </div>
                             <div className="flex items-center gap-2 text-gray-600">
-                                <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
+                                <PackageCheck size={20} color='green' />
                                 <span>Fast Delivery</span>
                             </div>
                         </div>

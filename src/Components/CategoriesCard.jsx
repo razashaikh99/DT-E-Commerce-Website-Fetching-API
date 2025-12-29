@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button'
+import { ArrowRight } from 'lucide-react'
 
 export default function CategoriesCard({ onClick, ...props }) {
     return (
@@ -22,9 +23,7 @@ export default function CategoriesCard({ onClick, ...props }) {
 
                 </div>
                 <div className="absolute top-4 right-2 bg-white/20 backdrop-blur-sm rounded-full p-2 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    <ArrowRight size={18} color='white' />
                 </div>
             </div>
             <div className="p-5 bg-gradient-to-r from-gray-50 to-white">

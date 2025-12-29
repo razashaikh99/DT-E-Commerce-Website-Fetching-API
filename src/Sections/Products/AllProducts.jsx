@@ -8,6 +8,7 @@ import { addToCart } from '../../store/action/cartAction';
 import ProductCard from '../../Components/ProductCard';
 import NoProduct from '../../Components/NoProduct';
 import Loader from '../../Components/Loader';
+import ProductHeader from '../../Components/ProductHeader';
 
 export default function AllProducts() {
 
@@ -34,29 +35,19 @@ export default function AllProducts() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8 pt-30">
             {/* Header Section */}
-            <div className="max-w-7xl mx-auto mb-12">
-                <div className="text-center mb-10">
-                    <h1 className="text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-                        All Products
-                    </h1>
-                    <p className="text-gray-600 text-lg max-w-4xl mx-auto">
-                        Browse through our complete collection of premium products
-                        {products.length > 0 && (
-                            <span className="text-blue-600 font-semibold ml-2">
-                                ({products.length} products available)
-                            </span>
-                        )}
-                    </p>
-                </div>
-            </div>
+            <ProductHeader 
+                heading="All Products"
+                para="Browse through our complete collection of premium products"
+                length={products?.length}
+            />
 
             {/* Products Grid */}
             <div className="max-w-7xl mx-auto">
-                {products.length === 0 ? (
+                {products?.length === 0 ? (
                     <NoProduct />
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-6">
-                        {products.map((product) => (
+                        {products?.map((product) => (
                             <ProductCard
                                 key={product?.id}
                                 onClick={() => {

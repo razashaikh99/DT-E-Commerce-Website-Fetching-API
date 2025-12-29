@@ -1,4 +1,4 @@
-import { setSelectedProduct, increaseQuantity,  decreaseQuantity, setQuantity, resetQuantity } from "../slice/productDetailSlice"
+import { setSelectedProduct, increaseQuantity, decreaseQuantity, setQuantity, resetQuantity, setActiveImage } from "../slice/productDetailSlice"
 
 export const selectProduct = (product) => {
     return (dispatch) => {
@@ -29,3 +29,9 @@ export const resetProductQuantity = () => {
         dispatch(resetQuantity());
     };
 };
+
+export const ActiveImage = () => {
+    return (dispatch => {
+        dispatch(setActiveImage());
+    })
+}

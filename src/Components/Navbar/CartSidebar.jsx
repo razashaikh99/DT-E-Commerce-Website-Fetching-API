@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeFromCart, increaseQuantity, decreaseQuantity } from "../../store/action/cartAction";
+import Button from "../Button";
+import { Plus, ShoppingCart } from "lucide-react";
 
 export default function CartSidebar({ isOpen, onClose }) {
 
@@ -19,7 +21,7 @@ export default function CartSidebar({ isOpen, onClose }) {
         <div>
             {/* Backdrop */}
             <div
-                className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-all duration-500 z-40
+                className={`fixed inset-0 bg-black/0 backdrop-blur-sm transition-all duration-500 z-40
             ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
                 onClick={onClose}
             ></div>
@@ -133,7 +135,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                                                 </div>
 
                                                 <div className="flex items-center justify-between mt-4">
-                                                    <div className="">
+                                                    <div>
                                                     </div>
                                                     <div className="text-right">
                                                         <p className="text-xl font-bold text-blue-600">
@@ -157,7 +159,7 @@ export default function CartSidebar({ isOpen, onClose }) {
                         {/* Order Summary */}
                         <div className="space-y-3 mb-6">
 
-                            <div className="">
+                            <div>
                                 <div className="flex justify-between text-xl font-bold text-gray-900">
                                     <span>Total Price:</span>
                                     <span>${(totalPrice).toFixed(2)}/-</span>
@@ -167,28 +169,27 @@ export default function CartSidebar({ isOpen, onClose }) {
 
                         {/* Action Buttons */}
                         <div className="space-y-3">
-                            <button
+
+                            <Button
                                 onClick={() => {
                                     onClose();
                                     navigate("/checkout");
                                 }}
-                                className="contact-gradient text-white font-bold py-3 w-full rounded-full hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                                Proceed to Checkout
-                            </button>
+                                icon={<Plus size={18} />}
+                                text="Proceed to Checkout"
 
-                            <button
-                                onClick={onClose}
-                                className="w-full py-2 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                                Continue Shopping
-                            </button>
+                            />
+                            <Button
+                                onClick={() => {
+                                    onClose();
+                                    navigate("/checkout");
+                                }}
+                                icon={<ShoppingCart size={18} />}
+                                text="Continue Shopping"
+                                isBgColor="bg-white border border-blue-600"
+                                isColor="text-blue-500"
+                            />
+
                         </div>
 
                     </div>

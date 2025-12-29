@@ -4,6 +4,7 @@ const initialState = {
     selectedItem: null,
     quantity: 1,
     maxQuantity: 10,
+    activeImage: 0
 }
 
 const productDetailSlice = createSlice({
@@ -39,9 +40,12 @@ const productDetailSlice = createSlice({
         },
         resetQuantity: (state) => {
             state.quantity = 1;
-        }
+        },
+        setActiveImage: (state, action) => {
+            state.activeImage = action.payload;
+        },
     }
 });
 
-export const { setSelectedProduct, increaseQuantity, decreaseQuantity, setQuantity, resetQuantity } = productDetailSlice.actions;
+export const { setSelectedProduct, increaseQuantity, decreaseQuantity, setQuantity, resetQuantity, setActiveImage } = productDetailSlice.actions;
 export default productDetailSlice.reducer;
