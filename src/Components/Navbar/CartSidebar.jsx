@@ -5,6 +5,7 @@ import Button from "../Button";
 import { Handbag, Minus, Plus, ShoppingBag, ShoppingCart, Trash2, X } from "lucide-react";
 import SidebarProductCard from "../SidebarProductCard";
 import SidebarEmpty from "../SidebarEmpty";
+import SidebarHeader from "../SidebarHeader";
 
 export default function CartSidebar({ isOpen, onClose }) {
 
@@ -35,27 +36,10 @@ export default function CartSidebar({ isOpen, onClose }) {
             ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 {/* Cart Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                                <Handbag size={20} />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-bold">Shopping Cart</h2>
-                                <p className="text-blue-100 text-sm mt-1">
-                                    {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in cart
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={onClose}
-                            className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
-                        >
-                            <X size={20} />
-                        </button>
-                    </div>
-                </div>
+                <SidebarHeader
+                    onClick={onClose}
+                    length={cartItems.length}
+                />
 
                 {/* Cart Content */}
                 <div className="h-[calc(100vh-180px)] overflow-y-auto p-6">
