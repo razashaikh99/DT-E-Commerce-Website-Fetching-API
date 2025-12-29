@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ProductHeader from "../../Components/ProductHeader";
+import { BadgeCheck, ChartColumnStacked, Check, Handbag, LockKeyhole, X } from "lucide-react";
+import Button from "../../Components/Button";
 
 export default function Checkout() {
 
@@ -17,26 +20,23 @@ export default function Checkout() {
             <div className="max-w-6xl mx-auto">
 
                 {/* Header */}
-                <div className="text-center mb-12">
-                    <h1 className="text-5xl font-bold text-gray-900 mb-4 tracking-tight">Checkout</h1>
-                    <p className="text-gray-600 text-lg">Review your order and complete your purchase</p>
-                </div>
+                <ProductHeader
+                    heading="Checkout"
+                    para="Review your order and complete your purchase"
+                />
 
                 {cartItems.length === 0 ? (
                     <div className="text-center py-20 bg-white rounded-3xl shadow-lg">
                         <div className="w-24 h-24 mx-auto mb-6 text-gray-300">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-full h-full">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                            </svg>
+                            <Handbag size={100} />
                         </div>
                         <h3 className="text-2xl font-bold text-gray-700 mb-3">Your cart is empty</h3>
                         <p className="text-gray-500 mb-8">Add some products to proceed with checkout</p>
-                        <button
+                        <Button
+                            className="!w-fit mx-auto px-8"
                             onClick={() => navigate("/")}
-                            className="contact-gradient text-white font-semibold py-3 px-8 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                        >
-                            Continue Shopping
-                        </button>
+                            text="Continue Shopping"
+                        />
                     </div>
                 ) : (
                     <div className="grid lg:grid-cols-3 gap-8">
@@ -81,9 +81,7 @@ export default function Checkout() {
 
                                                     {item.brand && (
                                                         <p className="text-gray-600 text-sm mt-1 flex items-center gap-1">
-                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                                            </svg>
+                                                            <ChartColumnStacked size={18} color='gray' />
                                                             {item.brand}
                                                         </p>
                                                     )}
@@ -91,7 +89,7 @@ export default function Checkout() {
                                                     <div className="flex items-center justify-between mt-4">
                                                         <div className="flex items-center gap-2 text-gray-600">
                                                             <span className="font-medium">Qty: {item.qty}</span>
-                                                            <span className="text-gray-400">×</span>
+                                                            <span className="text-gray-400"><X size={16} /></span>
                                                             <span>${item.price.toFixed(2)} each</span>
                                                         </div>
                                                         {item.discountPercentage && (
@@ -112,28 +110,20 @@ export default function Checkout() {
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Payment Method</h2>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     <button className="p-4 border-2 border-gray-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center">
-                                        <svg className="w-8 h-8 text-blue-600 mb-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                        </svg>
-                                        <span className="font-medium">Credit Card</span>
+                                        <BadgeCheck size={28} color="blue" />
+                                        <span className="font-medium pt-3">Credit Card</span>
                                     </button>
                                     <button className="p-4 border-2 border-gray-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all flex flex-col items-center">
-                                        <svg className="w-8 h-8 text-green-600 mb-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                        </svg>
-                                        <span className="font-medium">PayPal</span>
+                                        <BadgeCheck size={28} color="orange" />
+                                        <span className="font-medium pt-3">PayPal</span>
                                     </button>
                                     <button className="p-4 border-2 border-gray-200 rounded-2xl hover:border-yellow-500 hover:bg-yellow-50 transition-all flex flex-col items-center">
-                                        <svg className="w-8 h-8 text-yellow-600 mb-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                        </svg>
-                                        <span className="font-medium">Stripe</span>
+                                        <BadgeCheck size={28} color="green" />
+                                        <span className="font-medium pt-3">Stripe</span>
                                     </button>
                                     <button className="p-4 border-2 border-gray-200 rounded-2xl hover:border-purple-500 hover:bg-purple-50 transition-all flex flex-col items-center">
-                                        <svg className="w-8 h-8 text-purple-600 mb-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                        </svg>
-                                        <span className="font-medium">Apple Pay</span>
+                                        <BadgeCheck size={28} color="purple" />
+                                        <span className="font-medium pt-3">Apple Pay</span>
                                     </button>
                                 </div>
                             </div>
@@ -193,16 +183,12 @@ export default function Checkout() {
                                     onClick={() => navigate("/confirm-order")}
                                     className="w-full bg-white text-blue-600 font-bold py-4 px-6 rounded-full hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
                                 >
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
+                                    <Check />
                                     Confirm Order
                                 </button>
 
                                 <div className="flex items-center justify-center gap-3 mt-6 text-blue-100 text-sm">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                    </svg>
+                                    <LockKeyhole />
                                     <span>SSL Encrypted Payment</span>
                                 </div>
                             </div>
