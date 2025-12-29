@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllCategories } from '../../store/action/categoryAction';
+import CategoriesCard from '../../Components/CategoriesCard';
+import Loader from '../../Components/Loader';
 
 export default function AllCategories() {
 
@@ -15,12 +17,9 @@ export default function AllCategories() {
   }, [dispatch])
 
   if (loading) {
-    return <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-20 h-20 mx-auto rounded-full border-[6px] border-blue-500 border-t-transparent animate-spin mb-6"></div>
-        <p className="text-gray-600 text-lg font-medium">Loading amazing Categories...</p>
-      </div>
-    </div>
+    return <Loader 
+      text="Loading amazing Categories..."
+    />
   }
 
   return (
@@ -39,54 +38,60 @@ export default function AllCategories() {
 
         {/* Categories Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-          {categories.map((category, index) => (
-            <div
-              key={index}
+          {categories.map((category, i) => (
+            <CategoriesCard
+              key={i.index}
               onClick={() => navigate(`/categories/${category.slug}`)}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden hover:-translate-y-2"
-            >
+              image={category.image}
+              name={category.name}
+            />
+            // <div
+            //   key={index}
+            //   onClick={() => navigate(`/categories/${category.slug}`)}
+            //   className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden hover:-translate-y-2"
+            // >
 
-              {/* Category Image */}
-              <div className="relative h-38 overflow-hidden">
-                <img
-                  src={category.image || "https://t3.ftcdn.net/jpg/05/32/38/82/360_F_532388287_lEM2pgAFstzdukcxrk09YlEzTKB5iZaR.jpg"}
-                  alt={category.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+            //   {/* Category Image */}
+            //   <div className="relative h-38 overflow-hidden">
+            //     <img
+            //       src={category.image || "https://t3.ftcdn.net/jpg/05/32/38/82/360_F_532388287_lEM2pgAFstzdukcxrk09YlEzTKB5iZaR.jpg"}
+            //       alt={category.name}
+            //       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            //     />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+            //     {/* Gradient Overlay */}
+            //     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Category Name */}
-                <div className="absolute bottom-4 left-0 right-0 px-4">
-                  <h2 className="text-white text-xl font-bold capitalize text-center drop-shadow-lg">
-                    {category.name}
-                  </h2>
+            //     {/* Category Name */}
+            //     <div className="absolute bottom-4 left-0 right-0 px-4">
+            //       <h2 className="text-white text-xl font-bold capitalize text-center drop-shadow-lg">
+            //         {category.name}
+            //       </h2>
 
-                </div>
+            //     </div>
 
-                {/* Hover Icon */}
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </div>
-              </div>
+            //     {/* Hover Icon */}
+            //     <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500">
+            //       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            //       </svg>
+            //     </div>
+            //   </div>
 
-              {/* Button Section */}
-              <div className="p-5 bg-gradient-to-r from-gray-50 to-white">
-                <button className="w-full contact-gradient text-white font-semibold py-3 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                  <span>Browse Products</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </button>
-              </div>
+            //   {/* Button Section */}
+            //   <div className="p-5 bg-gradient-to-r from-gray-50 to-white">
+            //     <button className="w-full contact-gradient text-white font-semibold py-3 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+            //       <span>Browse Products</span>
+            //       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            //       </svg>
+            //     </button>
+            //   </div>
 
-              {/* Corner Decoration */}
-              <div className="absolute top-0 left-0 w-12 h-12 bg-gradient-to-br from-blue-500/20 to-transparent rounded-tr-2xl" />
+            //   {/* Corner Decoration */}
+            //   <div className="absolute top-0 left-0 w-12 h-12 bg-gradient-to-br from-blue-500/20 to-transparent rounded-tr-2xl" />
 
-            </div>
+            // </div>
           ))}
         </div>
 
