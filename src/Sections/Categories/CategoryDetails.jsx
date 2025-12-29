@@ -76,7 +76,17 @@ export default function CategoryDetails() {
                                 thumbnail={product?.thumbnail}
                                 title={product?.title}
                                 rating={product?.rating}
+                                brand={product?.brand}
+                                warrantyInformation={product?.warrantyInformation}
+                                availabilityStatus={product?.availabilityStatus}
+                                price={product?.price}
+                                onCardPress={(e) => {
+                                    toastifyNotify(product)
+                                    e.stopPropagation()
+                                }}
                             />
+
+                            
                             // <div
                             //     key={product?.id}
                             //     className="group bg-white flex flex-col rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-1"
