@@ -1,6 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import { contactSchema, contactValidationSchema } from '../ContactSchema/ValidationSchema';
+import Input from '../../../Components/Input';
+import SubjectInput from '../../../Components/SubjectInput';
+import MessageInput from '../../../Components/MessageInput';
+import Button from '../../../Components/Button';
 
 export default function ContactForm() {
 
@@ -12,7 +16,7 @@ export default function ContactForm() {
                     initialValues={contactSchema}
                     validationSchema={contactValidationSchema}
                     onSubmit={(values, { resetForm }) => {
-                        console.log("Values: ", values);
+                        alert("Values: ", values);
                         toast.success("Form Submited Successfully...")
                         resetForm();
                     }}
@@ -20,103 +24,72 @@ export default function ContactForm() {
                     validateOnMount={false}
                     validateOnChange={false}
                 >
-                    {({ errors }) => (
-
-                        <Form className='space-y-3'>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                    <Field
+                    {({ errors, handleSubmit, setFieldValue, values }) => {
+                        console.log("values ===> ", values?.firstName)
+                        return (
+                            <Form className='space-y-3'>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <Input
+                                        label="First Name"
                                         type="text"
-                                        name='firstName'
-                                        placeholder="Your first name"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                        name="firstName"
+                                        placeholder="Muhammad Raza"
+                                        errors={errors.firstName}
+                                        onChange={(e) => setFieldValue('firstName', e.target.value)}
+                                        value={values.firstName}
                                     />
-                                    {errors.firstName && (
-                                        <p className='text-red-500 text-sm py-1'>{errors.firstName}</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                    <Field
+                                    <Input
+                                        label="Last Name"
                                         type="text"
-                                        name='lastName'
-                                        placeholder="Your last name"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                        name="lastName"
+                                        placeholder="Shaikh"
+                                        errors={errors.lastName}
+                                        onChange={(e) => setFieldValue('lastName', e.target.value)}
+                                        value={values.lastName}
                                     />
-                                    {errors.lastName && (
-                                        <p className='text-red-500 text-sm py-1'>{errors.lastName}</p>
-                                    )}
                                 </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                                <Field
+                                <Input
+                                    label="Email Address"
                                     type="email"
-                                    name='email'
-                                    placeholder="your@gmail.com"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    name="email"
+                                    placeholder="razashaikh@gmail.com"
+                                    errors={errors.email}
+                                    onChange={(e) => setFieldValue('email', e.target.value)}
+                                    value={values.email}
                                 />
-                                {errors.email && (
-                                    <p className='text-red-500 text-sm py-1'>{errors.email}</p>
-                                )}
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                                <Field
+                                <Input
+                                    label="Phone Number"
                                     type="tel"
-                                    name='tel'
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    name="tel"
                                     placeholder="+92 300 1234567"
+                                    errors={errors.tel}
+                                    onChange={(e) => setFieldValue('tel', e.target.value)}
+                                    value={values.tel}
                                 />
-                                {errors.tel && (
-                                    <p className='text-red-500 text-sm py-1'>{errors.tel}</p>
-                                )}
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                                <Field
+                                <SubjectInput
+                                    label="Subject"
                                     as="select"
-                                    name='subject'
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                >
-                                    <option value="">Select Subject:</option>
-                                    <option>Product Questions</option>
-                                    <option>Order Support</option>
-                                    <option>Returns & Exchanges</option>
-                                    <option>Size Consultation</option>
-                                    <option>Wholesale Inquiry</option>
-                                    <option>Other</option>
-                                </Field>
-                                {errors.subject && (
-                                    <p className='text-red-500 text-sm py-1'>{errors.subject}</p>
-                                )}
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                <Field
-                                    as="textarea"
+                                    name="subject"
+                                    errors={errors.subject}
+                                    value={values.subject}
+                                    onChange={(e) => setFieldValue('subject', e.target.value)}
+                                />
+                                <MessageInput
+                                    label="Message"
                                     rows="5"
                                     name='message'
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    errors={errors.message}
+                                    value={values.message}
+                                    onChange={(e) => setFieldValue('message', e.target.value)}
                                     placeholder="Tell us how we can help you..."
                                 />
-                                {errors.message && (
-                                    <p className='text-red-500 text-sm pb-1'>{errors.message}</p>
-                                )}
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="w-full contact-gradient text-white py-3 px-6 rounded-full font-semibold hover:bg-indigo-700 transition hover:scale-105 cursor-pointer">
-                                Send Message
-                            </button>
-                        </Form>
-                    )}
+                                <Button
+                                    text="Send Message"
+                                    type="submit"
+                                />
+                            </Form>
+                        )
+                    }}
 
                 </Formik>
             </div>
