@@ -5,6 +5,7 @@ import cartReducer from "./slice/cartSlice"
 import categoriesReducer from "./slice/categorySlice";
 import categoryProductsReducer from "./slice/categoryProductsSlice";
 import featureProductReducer from "./slice/featureProductSlice";
+import authReducer from "./slice/loginSlice"
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
         categories: categoriesReducer,
         categoryProducts: categoryProductsReducer,
         featureProduct: featureProductReducer,
+        auth: authReducer
     },
 });
 

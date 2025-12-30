@@ -8,6 +8,7 @@ import Checkout from '../Sections/Products/Checkout'
 import ConfirmOrder from '../Sections/Products/ConfirmOrder'
 import Category from '../Pages/Categories/Category'
 import CategoryDetails from '../Sections/Categories/CategoryDetails'
+import Login from '../Pages/Auth/Login'
 
 export default function AppRoutes() {
     return (
@@ -22,6 +23,7 @@ export default function AppRoutes() {
                 <Route path="/confirm-order" element={<ConfirmOrder />} />
                 <Route path="/about-us" element={<AboutUsPage />} />
                 <Route path="/contact-us" element={<ContactUsPage />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </div>
     )
