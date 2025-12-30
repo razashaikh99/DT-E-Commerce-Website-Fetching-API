@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { contactSchema, contactValidationSchema } from '../ContactSchema/ValidationSchema';
+import { contactSchema, contactValidationSchema } from '../../../schema/ValidationSchema';
 import Input from '../../../Components/Input';
 import SubjectInput from '../../../Components/SubjectInput';
 import MessageInput from '../../../Components/MessageInput';
