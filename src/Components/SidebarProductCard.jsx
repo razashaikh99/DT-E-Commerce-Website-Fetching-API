@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import React from 'react'
+import ProductQuantity from './ProductQuantity'
 
 export default function SidebarProductCard({ onClick, onClickIncrease, onClickDecrease, ...props }) {
     return (
@@ -32,9 +33,13 @@ export default function SidebarProductCard({ onClick, onClickIncrease, onClickDe
                         </button>
                     </div>
 
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-3 mt-4">
-                            {/* Minus Button */}
+                    <div className="flex justify-between items-center pt-3 pr-3">
+                        <ProductQuantity
+                            onClickDecrease={onClickDecrease}
+                            quantity={props.qty}
+                            onClickIncrease={onClickIncrease}
+                        />
+                        {/* <div className="flex items-center gap-3 mt-4">
                             <button
                                 onClick={onClickDecrease}
                                 className="px-2 py-2 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
@@ -42,10 +47,8 @@ export default function SidebarProductCard({ onClick, onClickIncrease, onClickDe
                                 <Minus size={15} />
                             </button>
 
-                            {/* Quantity Display */}
                             <span className="font-bold text-gray-900">{props.qty}</span>
 
-                            {/* Plus Button */}
                             <button
                                 onClick={onClickIncrease}
                                 // disabled={quantity === maxQuantity}
@@ -54,9 +57,9 @@ export default function SidebarProductCard({ onClick, onClickIncrease, onClickDe
                             >
                                 <Plus size={15} />
                             </button>
-                        </div>
+                        </div> */}
 
-                        <div className="flex items-center justify-between mt-4">
+                        <div className="flex items-center justify-between mt-4 pl-4">
                             <div className="text-right">
                                 <p className="text-xl font-bold text-blue-600">
                                     ${(props.price * props.qty).toFixed(2)}/-

@@ -12,7 +12,7 @@ export default function SidebarEmpty({ onClick }) {
             <p className="text-gray-500 text-center mb-8">Add some amazing products to get started!</p>
             <Button
                 icon={<ShoppingBag size={20} />}
-                className="!py-2"
+                className=""
                 onClick={onClick}
                 text="Continue Shopping"
             />

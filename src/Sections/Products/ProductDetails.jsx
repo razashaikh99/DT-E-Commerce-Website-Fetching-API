@@ -8,6 +8,8 @@ import NoProduct from '../../Components/NoProduct';
 import Breadcrumb from '../../Components/Breadcrumb';
 import { useNavigate } from 'react-router-dom';
 import { Box, ChartBarStacked, Check, CircleCheckBig, Clock, LockKeyhole, Minus, PackageCheck, Plus, ShieldCheck, Shuffle } from 'lucide-react';
+import ProductQuantity from '../../Components/ProductQuantity';
+import KeyFeatures from '../../Components/KeyFeatures';
 
 export default function ProductDetails() {
 
@@ -27,6 +29,13 @@ export default function ProductDetails() {
             qty: quantity
         }));
         toast.success(`${product.title} (${quantity} items) added to cart!`);
+    }
+
+    const handleOnchange = (e) => {
+        const value = Number(e.target.value)
+        if (!isNaN(value)) {
+            dispatch(increaseQuantity(value))
+        }
     }
 
     return (
@@ -131,30 +140,15 @@ export default function ProductDetails() {
                                 Quantity
                             </span>
 
-                            <div className="flex items-center border-2 border-gray-300 rounded-full overflow-hidden">
-                                {/* Minus Button */}
-                                <button
-                                    onClick={() => dispatch(decreaseQuantity())}
-                                    disabled={quantity === 1}
-                                    className="px-5 text-2xl font-bold text-gray-600 transition cursor-pointer"
-                                >
-                                    <Minus size={18} />
-                                </button>
+                            <ProductQuantity
+                                onClickDecrease={() => dispatch(decreaseQuantity())}
+                                onClickIncrease={() => dispatch(increaseQuantity())}
+                                quantity={quantity}
+                                decreaseDisabled={quantity === 1}
+                                IncreaseDisabled={quantity === maxQuantity}
+                                onChange={handleOnchange}
 
-                                {/* Quantity Number */}
-                                <span className="px-6 py-1 text-lg font-bold text-gray-900 select-none">
-                                    {quantity}
-                                </span>
-
-                                {/* Plus Button */}
-                                <button
-                                    onClick={() => dispatch(increaseQuantity())}
-                                    disabled={quantity === maxQuantity}
-                                    className="px-5 text-2xl font-bold text-gray-600 transition cursor-pointer"
-                                >
-                                    <Plus size={18} />
-                                </button>
-                            </div>
+                            />
                         </div>
 
                         {/* Divider */}
@@ -169,27 +163,10 @@ export default function ProductDetails() {
                         </div>
 
                         {/* Key Features */}
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-blue-50/50 p-4 rounded-2xl">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <ShieldCheck size={18} color='green' />
-                                    </div>
-                                    <span className="font-semibold text-gray-900">Warranty</span>
-                                </div>
-                                <p className="text-gray-600">{selectedItem?.warrantyInformation || '1 Year Warranty'}</p>
-                            </div>
-
-                            <div className="bg-green-50/50 p-4 rounded-2xl">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <CircleCheckBig size={18} color='green' />
-                                    </div>
-                                    <span className="font-semibold text-gray-900">Return Policy</span>
-                                </div>
-                                <p className="text-gray-600">{selectedItem?.returnPolicy || '30 Days Return'}</p>
-                            </div>
-                        </div>
+                        <KeyFeatures
+                            warrantyInformation={selectedItem?.warrantyInformation}
+                            returnPolicy={selectedItem?.returnPolicy}
+                        />
 
                         {/* Product Details Grid */}
                         <div className="space-y-6">
