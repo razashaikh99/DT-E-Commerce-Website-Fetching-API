@@ -9,6 +9,7 @@ import ConfirmOrder from '../Sections/Products/ConfirmOrder'
 import Category from '../Pages/Categories/Category'
 import CategoryDetails from '../Sections/Categories/CategoryDetails'
 import Login from '../Pages/Auth/Login'
+import UserProfile from '../Pages/Auth/UserProfile'
 
 export default function AppRoutes() {
     return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
                 <Route path="/about-us" element={<AboutUsPage />} />
                 <Route path="/contact-us" element={<ContactUsPage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<UserProfile />} />
             </Routes>
         </div>
     )

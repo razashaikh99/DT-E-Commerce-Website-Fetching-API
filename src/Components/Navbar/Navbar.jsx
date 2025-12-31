@@ -79,9 +79,10 @@ export default function Navbar() {
 
                             {user
                                 ?
-                                <button className="text-gray-700 hover:text-indigo-600">
+                                <button onClick={() => navigate("/profile")} className="text-gray-700 hover:text-indigo-600">
                                     <i className="fas fa-user text-lg"></i>
                                 </button>
+                                // <Button icon={<i className="fas fa-user text-lg"></i>} />
                                 :
                                 <Button
                                     onClick={() => navigate("/login")}
