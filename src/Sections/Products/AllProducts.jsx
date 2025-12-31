@@ -16,6 +16,7 @@ export default function AllProducts() {
     const navigate = useNavigate();
     
     const { products, loading } = useSelector(state => state.products);
+    const { user } = useSelector( state => state.loginSlice);
 
     useEffect(() => {
         dispatch(fetchAllProducts());
@@ -62,8 +63,11 @@ export default function AllProducts() {
                                 availabilityStatus={product?.availabilityStatus}
                                 price={product?.price}
                                 onCardPress={(e) => {
-                                    toastifyNotify(product)
                                     e.stopPropagation()
+                                    {user ?
+                                        toastifyNotify(product) :
+                                        navigate("/login");
+                                    }
                                 }}
                             />
                         ))}

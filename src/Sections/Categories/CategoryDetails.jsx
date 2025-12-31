@@ -19,6 +19,7 @@ export default function CategoryDetails() {
 
     const dispatch = useDispatch();
     const { products, loading } = useSelector(state => state.categoryProducts);
+    const { user } = useSelector( state => state.loginSlice);
 
     useEffect(() => {
         if (slug) {
@@ -69,8 +70,12 @@ export default function CategoryDetails() {
                                 availabilityStatus={product?.availabilityStatus}
                                 price={product?.price}
                                 onCardPress={(e) => {
-                                    toastifyNotify(product)
                                     e.stopPropagation()
+                                    {
+                                        user ?
+                                            toastifyNotify(product) :
+                                            navigate("/login");
+                                    }
                                 }}
                             />
                         ))}

@@ -3,6 +3,7 @@ import Button from './Button'
 import { ChartColumnStacked, CircleCheckBig, Plus, ShieldCheck } from 'lucide-react'
 
 export default function ProductCard({ onClick, onCardPress, ...props }) {
+
     return (
         <div
             key={props.key}

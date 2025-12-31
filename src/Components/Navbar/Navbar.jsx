@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import CartSidebar from './CartSidebar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Button from '../Button';
 
 export default function Navbar() {
@@ -18,14 +18,11 @@ export default function Navbar() {
         0
     );
 
-    const dispatch = useDispatch();
-
     const { user } = useSelector(
         state => state.loginSlice
     );
 
     console.log("Login User => ", user);
-
 
     return (
         <div>
@@ -79,8 +76,6 @@ export default function Navbar() {
                                     </span>
                                 )}
                             </button>
-
-
 
                             {user
                                 ?
