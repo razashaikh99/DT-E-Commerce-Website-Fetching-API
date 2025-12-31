@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import CartSidebar from './CartSidebar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../Button';
 
 export default function Navbar() {
 
     const [cartOpen, setCartOpen] = useState(false);
+    const navigate = useNavigate();
 
     const cartItems = useSelector(
         state => state.cartProduct.cartItems
@@ -15,6 +17,15 @@ export default function Navbar() {
         (acc, item) => acc + item.qty,
         0
     );
+
+    const dispatch = useDispatch();
+
+    const { user } = useSelector(
+        state => state.loginSlice
+    );
+
+    console.log("Login User => ", user);
+
 
     return (
         <div>
@@ -69,26 +80,30 @@ export default function Navbar() {
                                 )}
                             </button>
 
-                            <button className="text-gray-700 hover:text-indigo-600">
-                                <i className="fas fa-user text-lg"></i>
-                            </button>
-                            <button className="md:hidden text-gray-700">
-                                <i className="fas fa-bars text-lg"></i>
-                            </button>
 
-                            {/* <button className='bw-full contact-gradient text-white py-2 px-9 rounded-full font-semibold hover:bg-indigo-700 transition hover:scale-105 cursor-pointer'>
-                                Login
-                            </button> */}
+
+                            {user
+                                ?
+                                <button className="text-gray-700 hover:text-indigo-600">
+                                    <i className="fas fa-user text-lg"></i>
+                                </button>
+                                :
+                                <Button
+                                    onClick={() => navigate("/login")}
+                                    className="!px-10 !py-2"
+                                    text="Login"
+                                />
+                            }
 
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav >
 
             <CartSidebar
                 isOpen={cartOpen}
                 onClose={() => setCartOpen(false)}
             />
-        </div>
+        </div >
     )
 }

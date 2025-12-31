@@ -24,7 +24,7 @@ export default function ProductCard({ onClick, onCardPress, ...props }) {
                 )}
 
                 {/* Quick View Overlay */}
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-t-2xl">
 
                 </div>
             </div>

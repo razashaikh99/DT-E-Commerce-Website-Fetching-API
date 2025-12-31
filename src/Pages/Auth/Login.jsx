@@ -3,8 +3,30 @@ import Button from '../../Components/Button'
 import { Form, Formik } from 'formik'
 import { loginSchema, loginValidationSchema } from '../../schema/loginSchema'
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Loader } from 'lucide-react'
+import { fetchLoginApi } from '../../store/action/loginAction'
 
 export default function Login() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { loading, user } = useSelector(state => state.loginSlice);
+
+
+    const onSubmit = (values, resetForm) => {
+        const payload = {
+            username: values.username,
+            password: values.password,
+        }
+
+        dispatch(fetchLoginApi(payload, navigate))
+        resetForm();
+
+    }
 
     return (
         <div className="pt-30 pb-16">
@@ -16,37 +38,47 @@ export default function Login() {
                         validationSchema={loginValidationSchema}
                         onSubmit={(values, { resetForm }) => {
                             console.log("Values: ", values);
-                            toast.success("User Login Successfully...")
-                            resetForm();
+                            onSubmit(values, resetForm);
                         }}
-                        validateOnBlur={false}
-                        validateOnMount={false}
-                        validateOnChange={false}
+                        validateOnBlur={true}
+                        validateOnChange={true}
                     >
-                        {({ errors, handleSubmit, setFeildValue, values }) => {
-                            console.log("values => ", values?.email);
+                        {({ handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => {
+                            console.log("values => ", values);
+                            console.log(errors);
+
                             return (
                                 <Form>
                                     <Input
                                         className="!my-3"
-                                        label="Email Address"
-                                        type="email"
-                                        placeholder="razashaikh@gmail.com"
-                                        errors={errors.email}
-                                        onChange={(e) => setFeildValue('email', e.target.value)}
-                                        values={values.email}
+                                        label="Username"
+                                        type="text"
+                                        placeholder="razashaikh"
+                                        value={values?.username}
+                                        errors={touched?.username ? errors.username : ''}
+                                        onChange={(e) => {
+                                            setFieldValue('username', e.target.value)
+                                            setFieldTouched('username', true, false)
+                                        }}
                                     />
                                     <Input
                                         className="!mb-6"
                                         label="Password"
                                         type="password"
-                                        errors={errors.password}
-                                        onChange={(e) => setFeildaValue('password', e.target.value)}
-                                        values={values.password}
+                                        errors={touched?.password ? errors.password : ''}
+                                        onChange={(e) => {
+                                            setFieldValue('password', e.target.value)
+                                            setFieldTouched('password', true, false)
+                                        }}
+                                        value={values.password}
                                     />
                                     <Button
                                         type="submit"
                                         text="Login"
+                                        onClick={() =>
+                                            handleSubmit()
+                                        }
+                                        isDisabled={loading}
                                     />
                                 </Form>
                             )
