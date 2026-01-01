@@ -159,9 +159,6 @@ export default function Navbar() {
                                             dispatch(setLogout());
                                             window.location.href = "/";
                                             setIsProfileOpen(false);
-                                            // toast.info("User Logout...")
-                                            // navigate("/");
-                                            // setLogout();
                                         }}
                                     >
                                         Logout
