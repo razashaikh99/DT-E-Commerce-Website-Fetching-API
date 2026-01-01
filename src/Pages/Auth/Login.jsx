@@ -65,6 +65,7 @@ export default function Login() {
                                         className="!mb-6"
                                         label="Password"
                                         type="password"
+                                        placeholder="********"
                                         errors={touched?.password ? errors.password : ''}
                                         onChange={(e) => {
                                             setFieldValue('password', e.target.value)

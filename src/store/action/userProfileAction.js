@@ -1,8 +1,9 @@
 import axios from "axios";
 import { setLoading, setUserData } from "../slice/userProfileSlice"
-import getToken from '../../utils/utils'
+import { getToken } from '../../utils/utils'
 
 export const fetchUserProfileData = () => {
+    const token = getToken();
     return async (dispatch) => {
         try {
             dispatch(setLoading(true));
@@ -10,7 +11,7 @@ export const fetchUserProfileData = () => {
             const response = await axios.get("https://dummyjson.com/auth/me",
                 {
                     headers: {
-                        'Authorization': `Bearer ${getToken}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )

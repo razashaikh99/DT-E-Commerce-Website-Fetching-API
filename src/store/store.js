@@ -6,6 +6,7 @@ import categoriesReducer from "./slice/categorySlice";
 import categoryProductsReducer from "./slice/categoryProductsSlice";
 import featureProductReducer from "./slice/featureProductSlice";
 import loginReducer from "./slice/loginSlice"
+import userProfileReducer from "./slice/userProfileSlice"
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         categoryProducts: categoryProductsReducer,
         featureProduct: featureProductReducer,
         loginSlice: loginReducer,
+        userProfile: userProfileReducer,
     },
 });
 

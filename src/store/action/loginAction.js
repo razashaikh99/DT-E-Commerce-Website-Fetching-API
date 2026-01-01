@@ -16,13 +16,13 @@ export const fetchLoginApi = (payload, navigate) => {
                 })
 
             dispatch(setUser(response));
-            setToken(response?.accessToken)
+            setToken(response?.data?.accessToken)
             setUser(response)
             toast.success("Login Successfully!");
             navigate("/");
         } catch (error) {
             console.log(error.response?.data);
-            toast.error(error.response?.data?.message || "Invalid Credentials");
+            toast.error(error.response?.data?.message);
         } finally {
             dispatch(setLoading(false));
         }
