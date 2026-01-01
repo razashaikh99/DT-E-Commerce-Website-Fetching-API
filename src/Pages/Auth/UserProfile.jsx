@@ -50,7 +50,7 @@ export default function UserProfile() {
                     {/* User Info Cards */}
                     <div className='space-y-6'>
                         {/* Username Card */}
-                        <div className='bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-100 hover:shadow-md transition-shadow'>
+                        {/* <div className='bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-100 hover:shadow-md transition-shadow'>
                             <div className="flex items-center">
                                 <div className="bg-blue-100 p-2 rounded-lg mr-4">
                                     <User size={18} color='blue' />
@@ -60,7 +60,8 @@ export default function UserProfile() {
                                     <p className='text-lg font-semibold text-gray-900'>{userData?.username}</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <
 
                         {/* Name Card */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
