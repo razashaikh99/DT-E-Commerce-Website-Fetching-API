@@ -1,30 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserProfileData } from '../../store/action/userProfileAction';
-import Loader from '../../Components/Loader';
-import { useEffect } from 'react';
-import { getToken } from '../../utils/utils';
+
 import ProductHeader from '../../Components/ProductHeader';
 import { Mail, ShieldAlert, User } from 'lucide-react';
 import ProfileCard from '../../Components/ProfileCard';
+import Button from '../../Components/Button';
 
-export default function UserProfile() {
-
-    const dispatch = useDispatch();
-    const token = getToken()
-
-    console.log("token => ", token);
-
-    const { loading, userData } = useSelector(state => state.userProfile);
-
-    useEffect(() => {
-        dispatch(fetchUserProfileData());
-    }, []);
-
-    if (loading) {
-        return <Loader
-            text="Loading User Data..."
-        />
-    }
+export default function EditProfile() {
 
     return (
         <div className="pt-32 pb-16">
@@ -33,8 +13,8 @@ export default function UserProfile() {
 
                     {/* Header Section */}
                     <ProductHeader
-                        heading="User Profile"
-                        para="View your personal information"
+                        heading="Edit Profile"
+                        para="Edit your personal information"
                     />
 
                     {/* Profile Image */}
@@ -42,7 +22,7 @@ export default function UserProfile() {
                         <div className="relative">
                             <img
                                 className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
-                                src={userData?.image}
+                                src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
                                 alt="User Profile Image"
                             />
                         </div>
@@ -55,9 +35,14 @@ export default function UserProfile() {
                             bgColor="bg-blue-50"
                             bgIconColor="bg-blue-100"
                             icon={<User size={18} color='blue' />}
-                            title="Username"
-                            data={userData?.username}
+                            input={
+                                <input
+                                    placeholder='Username'
+                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
+                                    type="text" />
+                            }
                         />
+
 
                         {/* Name Card */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -65,15 +50,23 @@ export default function UserProfile() {
                                 bgColor="bg-green-50"
                                 bgIconColor="bg-green-100"
                                 icon={<User size={18} color='green' />}
-                                title="First Name"
-                                data={userData?.firstName}
+                                input={
+                                    <input
+                                        placeholder='First Name'
+                                        className='px-2 py-1 rounded-sm w-full focus:border-none'
+                                        type="text" />
+                                }
                             />
                             <ProfileCard
                                 bgColor="bg-purple-50"
                                 bgIconColor="bg-purple-100"
                                 icon={<User size={18} color='purple' />}
-                                title="Last Name"
-                                data={userData?.lastName}
+                                input={
+                                    <input
+                                        placeholder='Last Name'
+                                        className='px-2 py-1 rounded-sm w-full focus:border-none'
+                                        type="text" />
+                                }
                             />
                         </div>
 
@@ -82,8 +75,12 @@ export default function UserProfile() {
                             bgColor="bg-yellow-50"
                             bgIconColor="bg-yellow-100"
                             icon={<Mail size={18} color='orange' />}
-                            title="Email"
-                            data={userData?.email}
+                            input={
+                                <input
+                                    placeholder='Email'
+                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
+                                    type="text" />
+                            }
                         />
 
                         {/* Gender Card */}
@@ -91,10 +88,20 @@ export default function UserProfile() {
                             bgColor="bg-pink-50"
                             bgIconColor="bg-pink-100"
                             icon={<ShieldAlert size={18} color='red' />}
-                            title="Gender"
-                            data={userData?.gender}
+                            input={
+                                <input
+                                    placeholder='Gender'
+                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
+                                    type="text" />
+                            }
                         />
                     </div>
+
+                    {/* Edit Button */}
+                    <Button
+                        className="!mt-8"
+                        text="Edit Profile"
+                    />
 
                 </div>
             </div>

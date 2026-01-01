@@ -1,16 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import CartSidebar from './CartSidebar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button';
+import { setLogout } from '../../store/slice/userProfileSlice';
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
 
     const [cartOpen, setCartOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const cartItems = useSelector(
         state => state.cartProduct.cartItems
+    );
+
+    const { user } = useSelector(
+        state => state.loginSlice
+    );
+
+    const { userData } = useSelector(
+        state => state.userProfile
+
     );
 
     const totalQuantity = cartItems.reduce(
@@ -18,9 +31,9 @@ export default function Navbar() {
         0
     );
 
-    const { user } = useSelector(
-        state => state.loginSlice
-    );
+    const toggleDropdown = () => {
+        setIsProfileOpen(!isProfileOpen)
+    }
 
     console.log("Login User => ", user);
 
@@ -77,19 +90,85 @@ export default function Navbar() {
                                 )}
                             </button>
 
-                            {user
-                                ?
-                                <button onClick={() => navigate("/profile")} className="text-gray-700 hover:text-indigo-600">
-                                    <i className="fas fa-user text-lg"></i>
+                            {user ? (
+                                <button
+                                    onClick={() => {
+                                        toggleDropdown()
+                                    }}>
+                                    {userData?.image ? (
+                                        <img
+                                            className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-200 object-cover"
+                                            src={userData?.image}
+                                            alt="User Profile"
+                                        />
+                                    ) : (
+                                        <i className="fas fa-user text-lg text-gray-700 hover:text-indigo-600"></i>
+                                    )}
                                 </button>
-                                // <Button icon={<i className="fas fa-user text-lg"></i>} />
-                                :
+                            ) : (
                                 <Button
                                     onClick={() => navigate("/login")}
                                     className="!px-10 !py-2"
                                     text="Login"
                                 />
-                            }
+                            )}
+
+                            {isProfileOpen && (
+                                <div className="absolute right-5 mt-40 w-48 bg-white rounded-lg shadow-lg border border-gray-100 z-50">
+
+                                    {/* 1. View Profile */}
+                                    {user ?
+                                        (
+                                            <button
+                                                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                                                onClick={() => {
+                                                    navigate("/profile");
+                                                    setIsProfileOpen(false);
+                                                }}
+                                            >
+                                                View Profile
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="hidden w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                                                onClick={() => {
+                                                    navigate("/login");
+                                                    setIsProfileOpen(false);
+                                                }}
+                                            >
+                                                View Profile
+                                            </button>
+                                        )
+                                    }
+
+                                    {/* 2. Edit Profile */}
+                                    <button
+                                        className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                                        onClick={() => {
+                                            navigate("/edit-profile");
+                                            setIsProfileOpen(false);
+                                        }}
+                                    >
+                                        Edit Profile
+                                    </button>
+
+                                    {/* 3. Logout */}
+                                    <button
+                                        className="block w-full text-left font-medium px-4 py-2 hover:bg-gray-100 text-red-600 cursor-pointer"
+                                        onClick={() => {
+                                            dispatch(setLogout());
+                                            window.location.href = "/";
+                                            setIsProfileOpen(false);
+                                            // toast.info("User Logout...")
+                                            // navigate("/");
+                                            // setLogout();
+                                        }}
+                                    >
+                                        Logout
+                                    </button>
+
+                                </div>
+                            )}
 
                         </div>
                     </div>

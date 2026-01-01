@@ -14,9 +14,13 @@ const userProfileSlice = createSlice({
         },
         setUserData: (state, action) => {
             state.userData = action.payload;
+        },
+        setLogout: (state) => {
+            state.userData = null;
+            state.token = null;
         }
     }
 });
 
-export const { setLoading, setUserData } = userProfileSlice.actions;
+export const { setLoading, setUserData, setLogout } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

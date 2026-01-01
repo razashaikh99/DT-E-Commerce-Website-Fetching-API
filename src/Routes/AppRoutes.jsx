@@ -10,6 +10,7 @@ import Category from '../Pages/Categories/Category'
 import CategoryDetails from '../Sections/Categories/CategoryDetails'
 import Login from '../Pages/Auth/Login'
 import UserProfile from '../Pages/Auth/UserProfile'
+import EditProfile from '../Pages/Auth/EditProfile'
 
 export default function AppRoutes() {
     return (
@@ -26,6 +27,7 @@ export default function AppRoutes() {
                 <Route path="/contact-us" element={<ContactUsPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<UserProfile />} />
+                <Route path="/edit-profile" element={<EditProfile />} />
             </Routes>
         </div>
     )

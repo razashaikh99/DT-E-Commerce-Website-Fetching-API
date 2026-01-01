@@ -11,6 +11,7 @@ export default function ProfileCard({ ...props }) {
                     <p className='text-sm font-medium text-gray-600'>{props.title}</p>
                     <p className='text-lg font-semibold text-gray-900'>{props.data}</p>
                 </div>
+                {props.input}
             </div>
         </div>
     )
