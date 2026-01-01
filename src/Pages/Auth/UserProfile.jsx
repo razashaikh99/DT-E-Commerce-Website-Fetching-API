@@ -60,43 +60,44 @@ export default function UserProfile() {
                         />
 
                         {/* Name Card */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <ProfileCard
+                                bgColor="bg-green-50"
+                                bgIconColor="bg-green-100"
+                                icon={<User size={18} color='green' />}
+                                title="First Name"
+                                data={userData?.firstName}
+                            />
+                            <ProfileCard
+                                bgColor="bg-purple-50"
+                                bgIconColor="bg-purple-100"
+                                icon={<User size={18} color='purple' />}
+                                title="Last Name"
+                                data={userData?.lastName}
+                            />
+                        </div>
+
+                        {/* Email Card */}
                         <ProfileCard
-                            bgColor="bg-green-50"
-                            bgIconColor="bg-green-100"
-                            icon={<User size={18} color='green' />}
-                            title="First Name"
-                            data={userData?.firstName}
+                            bgColor="bg-yellow-50"
+                            bgIconColor="bg-yellow-100"
+                            icon={<Mail size={18} color='orange' />}
+                            title="Email"
+                            data={userData?.email}
                         />
+
+                        {/* Gender Card */}
                         <ProfileCard
-                            bgColor="bg-purple-50"
-                            bgIconColor="bg-purple-100"
-                            icon={<User size={18} color='purple' />}
-                            title="Last Name"
-                            data={userData?.lastName}
+                            bgColor="bg-pink-50"
+                            bgIconColor="bg-pink-100"
+                            icon={<ShieldAlert size={18} color='red' />}
+                            title="Gender"
+                            data={userData?.gender}
                         />
                     </div>
 
-                    {/* Email Card */}
-                    <ProfileCard
-                        bgColor="bg-yellow-50"
-                        bgIconColor="bg-yellow-100"
-                        icon={<Mail size={18} color='orange' />}
-                        title="Email"
-                        data={userData?.email}
-                    />
-
-                    {/* Gender Card */}
-                    <ProfileCard
-                        bgColor="bg-pink-50"
-                        bgIconColor="bg-pink-100"
-                        icon={<ShieldAlert size={18} color='red' />}
-                        title="Gender"
-                        data={userData?.gender}
-                    />
-                </div>
-
-                {/* Edit Button */}
-                {/* <div className="mt-8 text-center">
+                    {/* Edit Button */}
+                    {/* <div className="mt-8 text-center">
                         <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-8 rounded-xl hover:shadow-lg transition-all transform hover:-translate-y-0.5">
                             <span className="flex items-center justify-center">
                                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -107,8 +108,8 @@ export default function UserProfile() {
                         </button>
                     </div> */}
 
+                </div>
             </div>
         </div>
-        </div >
     )
 }
