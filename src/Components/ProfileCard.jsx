@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ProfileCard ({ ...props }) {
+export default function ProfileCard({ ...props }) {
     return (
         <div className={`${props.bgColor} rounded-xl p-4 border border-blue-100 hover:shadow-md transition-shadow`}>
             <div className="flex items-center">
-                <div className="bg-blue-100 p-2 rounded-lg mr-4">
+                <div className={`${props.bgIconColor} p-2 rounded-lg mr-4`}>
                     {props.icon}
                 </div>
                 <div>

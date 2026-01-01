@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getToken } from '../../utils/utils';
 import ProductHeader from '../../Components/ProductHeader';
 import { Mail, ShieldAlert, User } from 'lucide-react';
+import ProfileCard from '../../Components/ProfileCard';
 
 export default function UserProfile() {
 
@@ -31,7 +32,7 @@ export default function UserProfile() {
                 <div className='bg-white rounded-3xl p-8 shadow-xl'>
 
                     {/* Header Section */}
-                    <ProductHeader 
+                    <ProductHeader
                         heading="User Profile"
                         para="View your personal information"
                     />
@@ -50,78 +51,52 @@ export default function UserProfile() {
                     {/* User Info Cards */}
                     <div className='space-y-6'>
                         {/* Username Card */}
-                        {/* <div className='bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-100 hover:shadow-md transition-shadow'>
-                            <div className="flex items-center">
-                                <div className="bg-blue-100 p-2 rounded-lg mr-4">
-                                    <User size={18} color='blue' />
-                                </div>
-                                <div>
-                                    <p className='text-sm font-medium text-gray-600'>Username</p>
-                                    <p className='text-lg font-semibold text-gray-900'>{userData?.username}</p>
-                                </div>
-                            </div>
-                        </div> */}
-                        <
+                        <ProfileCard
+                            bgColor="bg-blue-50"
+                            bgIconColor="bg-blue-100"
+                            icon={<User size={18} color='blue' />}
+                            title="Username"
+                            data={userData?.username}
+                        />
 
                         {/* Name Card */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className='bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-4 border border-green-100 hover:shadow-md transition-shadow'>
-                                <div className="flex items-center">
-                                    <div className="bg-green-100 p-2 rounded-lg mr-4">
-                                        <User size={18} color='green' />
-                                    </div>
-                                    <div>
-                                        <p className='text-sm font-medium text-gray-600'>First Name</p>
-                                        <p className='text-lg font-semibold text-gray-900'>{userData?.firstName}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-100 hover:shadow-md transition-shadow'>
-                                <div className="flex items-center">
-                                    <div className="bg-purple-100 p-2 rounded-lg mr-4">
-                                        <User size={18} color='purple' />
-                                    </div>
-                                    <div>
-                                        <p className='text-sm font-medium text-gray-600'>Last Name</p>
-                                        <p className='text-lg font-semibold text-gray-900'>{userData?.lastName}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Email Card */}
-                        <div className='bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-4 border border-yellow-100 hover:shadow-md transition-shadow'>
-                            <div className="flex items-center">
-                                <div className="bg-yellow-100 p-2 rounded-lg mr-4">
-                                    <Mail size={18} color="orange" />
-                                </div>
-                                <div>
-                                    <p className='text-sm font-medium text-gray-600'>Email Address</p>
-                                    <p className='text-lg font-semibold text-gray-900 break-all'>{userData?.email}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Gender Card */}
-                        <div className='bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-4 border border-pink-100 hover:shadow-md transition-shadow'>
-                            <div className="flex items-center">
-                                <div className="bg-pink-100 p-2 rounded-lg mr-4">
-                                    {/* <svg className="w-6 h-6 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
-                                    </svg> */}
-                                    <ShieldAlert size={18} color='red' />
-                                </div>
-                                <div>
-                                    <p className='text-sm font-medium text-gray-600'>Gender</p>
-                                    <p className='text-lg font-semibold text-gray-900'>{userData?.gender}</p>
-                                </div>
-                            </div>
-                        </div>
+                        <ProfileCard
+                            bgColor="bg-green-50"
+                            bgIconColor="bg-green-100"
+                            icon={<User size={18} color='green' />}
+                            title="First Name"
+                            data={userData?.firstName}
+                        />
+                        <ProfileCard
+                            bgColor="bg-purple-50"
+                            bgIconColor="bg-purple-100"
+                            icon={<User size={18} color='purple' />}
+                            title="Last Name"
+                            data={userData?.lastName}
+                        />
                     </div>
 
-                    {/* Edit Button */}
-                    {/* <div className="mt-8 text-center">
+                    {/* Email Card */}
+                    <ProfileCard
+                        bgColor="bg-yellow-50"
+                        bgIconColor="bg-yellow-100"
+                        icon={<Mail size={18} color='orange' />}
+                        title="Email"
+                        data={userData?.email}
+                    />
+
+                    {/* Gender Card */}
+                    <ProfileCard
+                        bgColor="bg-pink-50"
+                        bgIconColor="bg-pink-100"
+                        icon={<ShieldAlert size={18} color='red' />}
+                        title="Gender"
+                        data={userData?.gender}
+                    />
+                </div>
+
+                {/* Edit Button */}
+                {/* <div className="mt-8 text-center">
                         <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-8 rounded-xl hover:shadow-lg transition-all transform hover:-translate-y-0.5">
                             <span className="flex items-center justify-center">
                                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -132,8 +107,8 @@ export default function UserProfile() {
                         </button>
                     </div> */}
 
-                </div>
             </div>
         </div>
+        </div >
     )
 }
