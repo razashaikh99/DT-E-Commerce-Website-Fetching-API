@@ -13,5 +13,5 @@ export const editProfileValidationSchema = yup.object().shape({
     firstName: yup.string().required('First Name Required...'),
     lastName: yup.string().required('Last Name Required...'),
     email: yup.string().required('Email Required...'),
-    Gender: yup.string().required('Gender Required...'),
+    gender: yup.string().required('Gender Required...'),
 });

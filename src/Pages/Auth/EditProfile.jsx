@@ -4,12 +4,14 @@ import { Mail, ShieldAlert, User } from 'lucide-react';
 import ProfileCard from '../../Components/ProfileCard';
 import Button from '../../Components/Button';
 import { useDispatch } from 'react-redux';
+import { Form, Formik } from 'formik';
+import { editProfileSchema, editProfileValidationSchema } from '../../schema/editProfileSchema';
 
 export default function EditProfile() {
 
     const dispatch = useDispatch();
 
-    
+
 
     return (
         <div className="pt-32 pb-16">
@@ -33,65 +35,116 @@ export default function EditProfile() {
                         </div>
                     </div>
 
-                    {/* User Info Cards */}
-                    <div className='space-y-6'>
-                        {/* Username Card */}
-                        <ProfileCard
-                            bgColor="bg-blue-50"
-                            bgIconColor="bg-blue-100"
-                            icon={<User size={18} color='blue' />}
-                            input={true}
-                            inputPlaceholder="Username"
-                            inputType="text"
-                        />
+                    <Formik
+                        initialValues={editProfileSchema}
+                        validationSchema={editProfileValidationSchema}
+                        onSubmit={(values) => {
+                            console.log("Values => ", values);
+                            onSubmit(values)
+                        }}
+                        validateOnBlur={true}
+                        validateOnChange={true}
+                    >
+                        {({ handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => {
+                            // console.log("values => ", values);
+                            console.log("Error => ", errors);
 
+                            return (
+                                <Form>
+                                    {/* User Info Cards */}
+                                    <div className='space-y-6'>
+                                        {/* Username Card */}
+                                        <ProfileCard
+                                            bgColor="bg-blue-50"
+                                            bgIconColor="bg-blue-100"
+                                            icon={<User size={18} color='blue' />}
+                                            input={true}
+                                            inputPlaceholder="Username"
+                                            inputType="text"
+                                            value={values?.username}
+                                            onChange={(e) => {
+                                                setFieldValue('username', e.target.value)
+                                                setFieldTouched('username', true, false)
+                                            }}
+                                            errors={touched?.username ? errors.username : ''}
+                                        />
+                                        {/* Name Card */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <ProfileCard
+                                                bgColor="bg-green-50"
+                                                bgIconColor="bg-green-100"
+                                                icon={<User size={18} color='green' />}
+                                                input={true}
+                                                inputPlaceholder="First Name"
+                                                inputType="text"
+                                                value={values?.firstName}
+                                                onChange={(e) => {
+                                                    setFieldValue('firstName', e.target.value)
+                                                    setFieldTouched('firstName', true, false)
+                                                }}
+                                                errors={touched?.firstName ? errors.firstName : ''}
+                                            />
+                                            <ProfileCard
+                                                bgColor="bg-purple-50"
+                                                bgIconColor="bg-purple-100"
+                                                icon={<User size={18} color='purple' />}
+                                                input={true}
+                                                inputPlaceholder="Last Name"
+                                                inputType="text"
+                                                value={values?.lastName}
+                                                onChange={(e) => {
+                                                    setFieldValue('lastName', e.target.value)
+                                                    setFieldTouched('lastName', true, false)
+                                                }}
+                                                errors={touched?.lastName ? errors.lastName : ''}
+                                            />
+                                        </div>
+                                        {/* Email Card */}
+                                        <ProfileCard
+                                            bgColor="bg-yellow-50"
+                                            bgIconColor="bg-yellow-100"
+                                            icon={<Mail size={18} color='orange' />}
+                                            input={true}
+                                            inputPlaceholder="Email"
+                                            inputType="email"
+                                            value={values?.email}
+                                            onChange={(e) => {
+                                                setFieldValue('email', e.target.value)
+                                                setFieldTouched('email', true, false)
+                                            }}
+                                            errors={touched?.email ? errors.email : ''}
+                                        />
 
-                        {/* Name Card */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <ProfileCard
-                                bgColor="bg-green-50"
-                                bgIconColor="bg-green-100"
-                                icon={<User size={18} color='green' />}
-                                input={true}
-                                inputPlaceholder="First Name"
-                                inputType="text"
-                            />
-                            <ProfileCard
-                                bgColor="bg-purple-50"
-                                bgIconColor="bg-purple-100"
-                                icon={<User size={18} color='purple' />}
-                                input={true}
-                                inputPlaceholder="Last Name"
-                                inputType="text"
-                            />
-                        </div>
+                                        {/* Gender Card */}
+                                        <ProfileCard
+                                            bgColor="bg-pink-50"
+                                            bgIconColor="bg-pink-100"
+                                            icon={<ShieldAlert size={18} color='red' />}
+                                            input={true}
+                                            inputPlaceholder="Gender"
+                                            inputType="text"
+                                            value={values?.gender}
+                                            onChange={(e) => {
+                                                setFieldValue('gender', e.target.value)
+                                                setFieldTouched('gender', true, false)
+                                            }}
+                                            errors={touched?.gender ? errors.gender : ''}
+                                        />
+                                    </div>
 
-                        {/* Email Card */}
-                        <ProfileCard
-                            bgColor="bg-yellow-50"
-                            bgIconColor="bg-yellow-100"
-                            icon={<Mail size={18} color='orange' />}
-                            input={true}
-                            inputPlaceholder="Email"
-                            inputType="email"
-                        />
-
-                        {/* Gender Card */}
-                        <ProfileCard
-                            bgColor="bg-pink-50"
-                            bgIconColor="bg-pink-100"
-                            icon={<ShieldAlert size={18} color='red' />}
-                            input={true}
-                            inputPlaceholder="Gender"
-                            inputType="text"
-                        />
-                    </div>
-
-                    {/* Edit Button */}
-                    <Button
-                        className="!mt-8"
-                        text="Edit Profile"
-                    />
+                                    {/* Edit Button */}
+                                    <Button
+                                        type="submit"
+                                        className="!mt-8"
+                                        text="Edit Profile"
+                                        onClick={() =>
+                                            handleSubmit()
+                                        }
+                                    />
+                                </Form>
+                            )
+                        }}
+                    </Formik>
 
                 </div>
             </div>
