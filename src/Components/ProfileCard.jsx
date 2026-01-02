@@ -11,7 +11,13 @@ export default function ProfileCard({ ...props }) {
                     <p className='text-sm font-medium text-gray-600'>{props.title}</p>
                     <p className='text-lg font-semibold text-gray-900'>{props.data}</p>
                 </div>
-                {props.input}
+                {props.input &&
+                    <input
+                        placeholder={props.inputPlaceholder}
+                        className='px-2 py-1 rounded-sm w-full outline-none'
+                        type={props.inputType} />
+                }
+
             </div>
         </div>
     )

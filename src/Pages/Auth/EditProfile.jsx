@@ -3,8 +3,13 @@ import ProductHeader from '../../Components/ProductHeader';
 import { Mail, ShieldAlert, User } from 'lucide-react';
 import ProfileCard from '../../Components/ProfileCard';
 import Button from '../../Components/Button';
+import { useDispatch } from 'react-redux';
 
 export default function EditProfile() {
+
+    const dispatch = useDispatch();
+
+    
 
     return (
         <div className="pt-32 pb-16">
@@ -35,12 +40,9 @@ export default function EditProfile() {
                             bgColor="bg-blue-50"
                             bgIconColor="bg-blue-100"
                             icon={<User size={18} color='blue' />}
-                            input={
-                                <input
-                                    placeholder='Username'
-                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
-                                    type="text" />
-                            }
+                            input={true}
+                            inputPlaceholder="Username"
+                            inputType="text"
                         />
 
 
@@ -50,23 +52,17 @@ export default function EditProfile() {
                                 bgColor="bg-green-50"
                                 bgIconColor="bg-green-100"
                                 icon={<User size={18} color='green' />}
-                                input={
-                                    <input
-                                        placeholder='First Name'
-                                        className='px-2 py-1 rounded-sm w-full focus:border-none'
-                                        type="text" />
-                                }
+                                input={true}
+                                inputPlaceholder="First Name"
+                                inputType="text"
                             />
                             <ProfileCard
                                 bgColor="bg-purple-50"
                                 bgIconColor="bg-purple-100"
                                 icon={<User size={18} color='purple' />}
-                                input={
-                                    <input
-                                        placeholder='Last Name'
-                                        className='px-2 py-1 rounded-sm w-full focus:border-none'
-                                        type="text" />
-                                }
+                                input={true}
+                                inputPlaceholder="Last Name"
+                                inputType="text"
                             />
                         </div>
 
@@ -75,12 +71,9 @@ export default function EditProfile() {
                             bgColor="bg-yellow-50"
                             bgIconColor="bg-yellow-100"
                             icon={<Mail size={18} color='orange' />}
-                            input={
-                                <input
-                                    placeholder='Email'
-                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
-                                    type="text" />
-                            }
+                            input={true}
+                            inputPlaceholder="Email"
+                            inputType="email"
                         />
 
                         {/* Gender Card */}
@@ -88,12 +81,9 @@ export default function EditProfile() {
                             bgColor="bg-pink-50"
                             bgIconColor="bg-pink-100"
                             icon={<ShieldAlert size={18} color='red' />}
-                            input={
-                                <input
-                                    placeholder='Gender'
-                                    className='px-2 py-1 rounded-sm w-full focus:border-none'
-                                    type="text" />
-                            }
+                            input={true}
+                            inputPlaceholder="Gender"
+                            inputType="text"
                         />
                     </div>
 
