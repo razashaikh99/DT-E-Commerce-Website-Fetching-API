@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 export const editProfileSchema = {
+    image: "",
     username: "",
     firstName: "", 
     lastName: "",

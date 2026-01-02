@@ -6,10 +6,9 @@ import Button from '../Button';
 import { setLogout } from '../../store/slice/userProfileSlice';
 import { toast } from 'react-toastify';
 
-export default function Navbar() {
+export default function Navbar({ isProfileOpen, setIsProfileOpen }) {
 
     const [cartOpen, setCartOpen] = useState(false);
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch()
 

@@ -3,15 +3,28 @@ import ProductHeader from '../../Components/ProductHeader';
 import { Mail, ShieldAlert, User } from 'lucide-react';
 import ProfileCard from '../../Components/ProfileCard';
 import Button from '../../Components/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { editProfileSchema, editProfileValidationSchema } from '../../schema/editProfileSchema';
+import { useEffect } from 'react';
+import { fetchUserProfileData } from '../../store/action/userProfileAction';
+import Loader from '../../Components/Loader';
 
 export default function EditProfile() {
 
     const dispatch = useDispatch();
 
+    const { loading, userData } = useSelector(state => state.userProfile);
 
+    useEffect(() => {
+        dispatch(fetchUserProfileData());
+    }, [])
+
+    if (loading) {
+        return <Loader
+            text="Loading User Data..."
+        />
+    }
 
     return (
         <div className="pt-32 pb-16">
@@ -24,19 +37,17 @@ export default function EditProfile() {
                         para="Edit your personal information"
                     />
 
-                    {/* Profile Image */}
-                    <div className='flex justify-center mb-8'>
-                        <div className="relative">
-                            <img
-                                className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
-                                src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
-                                alt="User Profile Image"
-                            />
-                        </div>
-                    </div>
+
 
                     <Formik
-                        initialValues={editProfileSchema}
+                        initialValues={{
+                            image: userData?.image,
+                            username: userData?.username,
+                            firstName: userData?.firstName,
+                            lastName: userData?.lastName,
+                            email: userData?.email,
+                            gender: userData?.gender,
+                        }}
                         validationSchema={editProfileValidationSchema}
                         onSubmit={(values) => {
                             console.log("Values => ", values);
@@ -51,6 +62,18 @@ export default function EditProfile() {
 
                             return (
                                 <Form>
+
+                                    {/* Profile Image */}
+                                    <div className='flex justify-center mb-8'>
+                                        <div className="relative">
+                                            <img
+                                                className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
+                                                src={values?.image}
+                                                alt="User Profile Image"
+                                            />
+                                        </div>
+                                    </div>
+
                                     {/* User Info Cards */}
                                     <div className='space-y-6'>
                                         {/* Username Card */}
