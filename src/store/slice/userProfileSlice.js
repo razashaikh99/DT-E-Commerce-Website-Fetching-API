@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const userProfileSlice = createSlice({
-    name: "userProfile", 
+    name: "userProfile",
     initialState,
     reducers: {
         setLoading: (state, action) => {

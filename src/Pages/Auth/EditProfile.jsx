@@ -9,6 +9,7 @@ import { editProfileSchema, editProfileValidationSchema } from '../../schema/edi
 import { useEffect } from 'react';
 import { fetchUserProfileData } from '../../store/action/userProfileAction';
 import Loader from '../../Components/Loader';
+import { updateUserProfile } from '../../store/action/editProfileAction';
 
 export default function EditProfile() {
 
@@ -24,6 +25,25 @@ export default function EditProfile() {
         return <Loader
             text="Loading User Data..."
         />
+    }
+
+    const onSubmit = (values) => {
+        // const payload = new FormData();
+        // payload.append("username", values.username)
+        // payload.append("firstName", values.firstName)
+        // payload.append("lastName", values.lastName)
+        // payload.append("email", values.email)
+        // payload.append("gender", values.gender)
+
+        const payload = {
+            username: values?.username,
+            firstName: values?.firstName,
+            lastName: values?.lastName,
+            email: values?.email,
+            gender: values?.gender,
+        }
+
+        dispatch(updateUserProfile(payload, userData?.id))
     }
 
     return (

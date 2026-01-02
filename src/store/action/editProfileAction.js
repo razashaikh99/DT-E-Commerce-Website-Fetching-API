@@ -1,25 +1,18 @@
-import axios from "axios";
-import { setLoading, setUser } from "../slice/loginSlice"
 import { toast } from "react-toastify";
-import { setToken } from "../../utils/utils";
+import { setLoading } from "../slice/editProfileSlice"
 
-export const fetchLoginApi = (payload, navigate) => {
-
+export const updateUserProfile = (payload, userId) => {
     return async (dispatch) => {
         try {
             dispatch(setLoading(true));
 
-            const response = await axios.post("https://dummyjson.com/auth/login",
+            const response = await axios.put(`https://dummyjson.com/users/${userId}`,
                 payload,
                 {
+                    // headers: { 'Content-Type': 'multipart/form-data' },
                     headers: { 'Content-Type': 'application/json' },
                 }
             )
-            dispatch(setUser(response));
-            setToken(response?.data?.accessToken)
-            setUser(response)
-            toast.success("Login Successfully!");
-            navigate("/");
         } catch (error) {
             console.log(error.response?.data);
             toast.error(error.response?.data?.message);
