@@ -38,7 +38,7 @@ export default function UserProfile() {
                     />
 
                     {/* Profile Image */}
-                    {/* <div className='flex justify-center mb-8'>
+                    <div className='flex justify-center mb-8'>
                         <div className="relative">
                             <img
                                 className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
@@ -46,7 +46,7 @@ export default function UserProfile() {
                                 alt="User Profile Image"
                             />
                         </div>
-                    </div> */}
+                    </div>
 
                     {/* User Info Cards */}
                     <div className='space-y-6'>
