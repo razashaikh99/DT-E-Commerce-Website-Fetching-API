@@ -94,7 +94,7 @@ export default function EditProfile() {
                                 <Form>
 
                                     {/* Profile Image */}
-                                    {/* <div className='flex justify-center mb-8'>
+                                    <div className='flex justify-center mb-8'>
                                         <div className="relative">
                                             <img
                                                 className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
@@ -107,7 +107,7 @@ export default function EditProfile() {
                                                 <Camera size={16} color='white' />
                                             </div>
                                         </div>
-                                    </div> */}
+                                    </div>
 
                                     <input type="file" className='hidden' ref={fileInputRef} onClick={handleFileChange} />
 
