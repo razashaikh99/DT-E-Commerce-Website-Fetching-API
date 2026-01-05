@@ -1,12 +1,12 @@
 
 import ProductHeader from '../../Components/ProductHeader';
-import { Mail, ShieldAlert, User } from 'lucide-react';
+import { Camera, Mail, Pencil, ShieldAlert, User } from 'lucide-react';
 import ProfileCard from '../../Components/ProfileCard';
 import Button from '../../Components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { editProfileSchema, editProfileValidationSchema } from '../../schema/editProfileSchema';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchUserProfileData } from '../../store/action/userProfileAction';
 import Loader from '../../Components/Loader';
 import { updateUserProfile } from '../../store/action/editProfileAction';
@@ -14,6 +14,8 @@ import { updateUserProfile } from '../../store/action/editProfileAction';
 export default function EditProfile() {
 
     const dispatch = useDispatch();
+    const fileInputRef = useRef();
+    const [file, setFile] = useState(null);
 
     const { loading, userData } = useSelector(state => state.userProfile);
 
@@ -46,6 +48,16 @@ export default function EditProfile() {
         dispatch(updateUserProfile(payload, userData?.id))
     }
 
+    const handleButton = () => {
+        fileInputRef.current?.click();
+    }
+
+    const handleFileChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setFile(e.target.files[0]);
+        }
+    }
+
     return (
         <div className="pt-32 pb-16">
             <div className='max-w-2xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -56,8 +68,6 @@ export default function EditProfile() {
                         heading="Edit Profile"
                         para="Edit your personal information"
                     />
-
-
 
                     <Formik
                         initialValues={{
@@ -84,15 +94,22 @@ export default function EditProfile() {
                                 <Form>
 
                                     {/* Profile Image */}
-                                    <div className='flex justify-center mb-8'>
+                                    {/* <div className='flex justify-center mb-8'>
                                         <div className="relative">
                                             <img
                                                 className='w-32 h-32 rounded-full border-3 border-gray-300 shadow-lg object-cover'
                                                 src={values?.image}
                                                 alt="User Profile Image"
                                             />
+                                            <div className='absolute right-0 bottom-10 inset-23 w-8 h-8 bg-blue-700 rounded-full cursor-pointer flex justify-center items-center'
+                                                onClick={handleButton}
+                                            >
+                                                <Camera size={16} color='white' />
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div> */}
+
+                                    <input type="file" className='hidden' ref={fileInputRef} onClick={handleFileChange} />
 
                                     {/* User Info Cards */}
                                     <div className='space-y-6'>
